@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo_medieval"
+    tools:context=".MainActivity">
+
+    <!-- MOLDURA SUPERIOR (para o título) -->
+    <ImageView
+        android:id="@+id/top_frame"
+        android:layout_width="330dp"
+        android:layout_height="120dp"
+        android:src="@drawable/moldura_topo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_frame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- Título dentro da moldura superior -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SwipeReign AI"
+        android:textColor="#2B1F17"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        app:layout_constraintTop_toTopOf="@id/top_frame"
+        app:layout_constraintBottom_toBottomOf="@id/top_frame"
+        app:layout_constraintStart_toStartOf="@id/top_frame"
+        app:layout_constraintEnd_toEndOf="@id/top_frame" />
+
+    <!-- MOLDURA INFERIOR (inputs e botão) — MESMA LARGURA DA DE CIMA -->
+    <ImageView
+        android:id="@+id/bottom_frame"
+        android:layout_width="330dp"
+        android:layout_height="350dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/moldura_base"
+        app:layout_constraintTop_toBottomOf="@id/top_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Conteúdo dentro da moldura inferior -->
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/bottom_frame"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_frame"
+        app:layout_constraintStart_toStartOf="@id/bottom_frame"
+        app:layout_constraintEnd_toEndOf="@id/bottom_frame"
+        android:padding="24dp">
+
+        <EditText
+            android:id="@+id/input_email"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:hint="E-mail"
+            android:padding="12dp"
+            android:background="@drawable/edittext_medieval"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#D4C8B0"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/input_key"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:hint="Chave da API"
+            android:padding="12dp"
+            android:background="@drawable/edittext_medieval"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#D4C8B0"
+            android:inputType="textPassword"
+            android:layout_marginBottom="24dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Jogo"
+            android:textAllCaps="false"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/button_medieval_selector"
+            android:textColor="#FFFFFF"
+            android:elevation="3dp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

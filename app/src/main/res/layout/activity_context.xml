@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_context"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo_medieval">
+
+    <!-- MOLDURA SUPERIOR (título) -->
+    <ImageView
+        android:id="@+id/top_frame"
+        android:layout_width="330dp"
+        android:layout_height="120dp"
+        android:src="@drawable/moldura_topo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_frame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- Título dentro da moldura superior -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Defina o Contexto"
+        android:textColor="#2B1F17"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        app:layout_constraintTop_toTopOf="@id/top_frame"
+        app:layout_constraintBottom_toBottomOf="@id/top_frame"
+        app:layout_constraintStart_toStartOf="@id/top_frame"
+        app:layout_constraintEnd_toEndOf="@id/top_frame" />
+
+    <!-- MOLDURA INFERIOR -->
+    <ImageView
+        android:id="@+id/bottom_frame"
+        android:layout_width="330dp"
+        android:layout_height="350dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/moldura_base"
+        app:layout_constraintTop_toBottomOf="@id/top_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Conteúdo dentro da moldura inferior -->
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/bottom_frame"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_frame"
+        app:layout_constraintStart_toStartOf="@id/bottom_frame"
+        app:layout_constraintEnd_toEndOf="@id/bottom_frame"
+        android:padding="24dp">
+
+        <!-- Campo de contexto -->
+        <EditText
+            android:id="@+id/edit_contexto"
+            android:layout_width="280dp"
+            android:layout_height="120dp"
+            android:hint="Digite o contexto inicial do seu reino..."
+            android:padding="16dp"
+            android:gravity="top|start"
+            android:background="@drawable/edittext_medieval"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#D4C8B0"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:layout_marginBottom="28dp" />
+
+        <!-- Botão -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Começar Jogo"
+            android:textAllCaps="false"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@drawable/button_medieval"
+            android:textColor="#FFFFFF"
+            android:elevation="4dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
