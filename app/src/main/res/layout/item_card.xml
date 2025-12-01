@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="#2B1F17"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="#8B5A2B"
+    app:strokeWidth="2dp"
+    app:cardElevation="8dp">
+
+    <TextView
+        android:id="@+id/card_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        android:gravity="center"
+        android:textColor="#E0C28B"
+        android:textSize="18sp"
+        android:fontFamily="serif"
+        android:text="Deslize para decidir o destino do reino..." />
+
+</com.google.android.material.card.MaterialCardView>

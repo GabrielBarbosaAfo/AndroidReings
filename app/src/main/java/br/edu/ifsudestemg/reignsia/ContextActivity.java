@@ -24,14 +24,10 @@ public class ContextActivity extends AppCompatActivity {
     }
 
     private void setupClick() {
-        startButton.setOnClickListener(v -> {
-            goToGame();
-        });
+        startButton.setOnClickListener(v -> goToGame());
     }
 
     private void goToGame() {
-        startButton.setOnClickListener(v -> startActivity(new Intent(this, GameActivity.class)));
-        Intent intent = new Intent(this, GameActivity.class);
-
+        startActivity(new Intent(this, GameActivityNative.class));
     }
 }
