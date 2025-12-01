@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReignsIA">
         <activity
+            android:name=".GameActivityNative"
+            android:exported="false" />
+        <activity
             android:name=".GameActivity"
             android:exported="false" />
         <activity
