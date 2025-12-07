@@ -4,21 +4,127 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="#2B1F17"
     app:cardCornerRadius="12dp"
-    app:strokeColor="#8B5A2B"
-    app:strokeWidth="2dp"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp"
+    app:strokeWidth="0dp"
+    app:cardPreventCornerOverlap="false"
+    app:contentPadding="0dp"
+    app:cardBackgroundColor="#1d0f03">
 
-    <TextView
-        android:id="@+id/card_text"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp"
-        android:gravity="center"
-        android:textColor="#E0C28B"
-        android:textSize="18sp"
-        android:fontFamily="serif"
-        android:text="Deslize para decidir o destino do reino..." />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/background_full"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fake_card_bg"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/frame_middle"
+            android:layout_width="330dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/moldura_game"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="50dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="50dp" />
+
+        <LinearLayout
+            android:id="@+id/moldura_titulo"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="@drawable/moldura_topo"
+            app:layout_constraintStart_toStartOf="@id/guide_left"
+            app:layout_constraintEnd_toEndOf="@id/guide_right"
+            app:layout_constraintTop_toTopOf="@id/guide_top">
+
+            <TextView
+                android:id="@+id/card_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#1d0f03"
+                android:textSize="20sp"
+                android:fontFamily="serif"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/moldura_imagem"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/moldura_game"
+            android:padding="12dp"
+            app:layout_constraintStart_toStartOf="@id/guide_left"
+            app:layout_constraintEnd_toEndOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/moldura_titulo"
+            app:layout_constraintHeight_percent="0.24">
+
+            <ImageView
+                android:id="@+id/card_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/moldura_historia"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="14dp"
+            android:background="@drawable/moldura_topo"
+            app:layout_constraintStart_toStartOf="@id/guide_left"
+            app:layout_constraintEnd_toEndOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/moldura_imagem"
+            app:layout_constraintBottom_toBottomOf="@id/guide_bottom">
+
+            <TextView
+                android:id="@+id/card_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#1d0f03"
+                android:textSize="16sp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
