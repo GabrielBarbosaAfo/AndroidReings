@@ -14,17 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReignsIA">
+
         <activity
-            android:name=".GameActivityNative"
+            android:name=".screens.GameActivityNative"
             android:exported="false" />
+
         <activity
             android:name=".GameActivity"
             android:exported="false" />
+
         <activity
-            android:name=".ContextActivity"
+            android:name=".screens.ContextActivity"
             android:exported="false" />
+
         <activity
-            android:name=".SplashActivity"
+            android:name=".screens.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="false" />
     </application>
 

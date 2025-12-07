@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "br.edu.ifsudestemg.reignsia"
+    namespace = "br.edu.ifsudestemg.throne"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "br.edu.ifsudestemg.reignsia"
+        applicationId = "br.edu.ifsudestemg.throne"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -40,4 +40,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("com.github.yuyakaido:CardStackView:2.3.4")
+    implementation("com.google.android.material:material:1.12.0")
 }
