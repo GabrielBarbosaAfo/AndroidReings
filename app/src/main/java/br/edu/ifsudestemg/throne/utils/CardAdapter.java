@@ -56,16 +56,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             holder.backgroundFull.setVisibility(View.GONE);
 
             holder.frameMiddle.setVisibility(View.VISIBLE);
-            holder.molduraTitulo.setVisibility(View.VISIBLE);
-            holder.molduraImagem.setVisibility(View.VISIBLE);
-            holder.molduraHistoria.setVisibility(View.VISIBLE);
+            holder.frameTitle.setVisibility(View.VISIBLE);
+            holder.frameImage.setVisibility(View.VISIBLE);
+            holder.frameHistory.setVisibility(View.VISIBLE);
 
         } else {
             holder.backgroundFull.setVisibility(View.VISIBLE);
             holder.frameMiddle.setVisibility(View.INVISIBLE);
-            holder.molduraTitulo.setVisibility(View.INVISIBLE);
-            holder.molduraImagem.setVisibility(View.INVISIBLE);
-            holder.molduraHistoria.setVisibility(View.INVISIBLE);
+            holder.frameTitle.setVisibility(View.INVISIBLE);
+            holder.frameImage.setVisibility(View.INVISIBLE);
+            holder.frameHistory.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -78,7 +78,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         ImageView backgroundFull, frameMiddle, cardImage;
         TextView cardName, cardText;
-        View molduraTitulo, molduraImagem, molduraHistoria;
+        View frameTitle, frameImage, frameHistory;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -90,9 +90,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             cardName = itemView.findViewById(R.id.card_name);
             cardText = itemView.findViewById(R.id.card_text);
 
-            molduraTitulo = itemView.findViewById(R.id.moldura_titulo);
-            molduraImagem = itemView.findViewById(R.id.moldura_imagem);
-            molduraHistoria = itemView.findViewById(R.id.moldura_historia);
+            frameTitle = itemView.findViewById(R.id.frame_title);
+            frameImage = itemView.findViewById(R.id.frame_image);
+            frameHistory = itemView.findViewById(R.id.frame_history);
         }
     }
 }

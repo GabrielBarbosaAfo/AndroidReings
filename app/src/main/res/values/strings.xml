@@ -1,4 +1,28 @@
+<!-- res/values/strings.xml -->
 <resources>
     <string name="app_name">ReignsIA</string>
-    <string name="carregando">Carregando...</string>
+
+    <string name="app_title">ThroneSwipe AI</string>
+    <string name="hint_player_name">Seu nome no jogo</string>
+    <string name="btn_google_sign">Entrar com o Google</string>
+    <string name="btn_continue">Continuar</string>
+    <string name="title_context">Defina o Contexto</string>
+    <string name="input_context">Digite o contexto inicial do seu reino …</string>
+    <string name="start_game">Começar Jogo</string>
+    <string name="frame_topo">Frame mais claro para titulo</string>
+    <string name="frame_base">Frame maior para os componentes</string>
+    <string name="frame_game">Frame cor escura para imagens</string>
+    <string name="card_back">Card fundo</string>
+    <string name="ic_continue">Icone continuar a inicialização</string>
+    <string name="title_setting">Configuração</string>
+    <string name="key_gemini">Chave da API do Gemini</string>
+    <string name="btn_key_save">Salvar Chave</string>
+
+
+    <string name="msg_empty_key">Digite a chave da API.</string>
+    <string name="msg_valid_key">Chave válida!</string>
+    <string name="msg_save_error">Erro ao salvar a chave.</string>
+    <string name="msg_invalid_key">Chave inválida</string>
+    <string name="msg_validating">Validando …</string>
+
 </resources>

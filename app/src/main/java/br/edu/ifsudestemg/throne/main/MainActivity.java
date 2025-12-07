@@ -2,28 +2,46 @@ package br.edu.ifsudestemg.throne.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.ifsudestemg.throne.screens.ContextActivity;
-import br.edu.ifsudestemg.throne.R;
-import br.edu.ifsudestemg.throne.utils.FeedbackUtils;
+import br.edu.ifsudestemg.throne.screens.LoginActivity;
+import br.edu.ifsudestemg.throne.screens.SettingsActivity;
+import br.edu.ifsudestemg.throne.utils.SecurePrefs;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Button startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
+
+        routeUser();
     }
-    public void init() {
-        startButton = findViewById(R.id.start_button);
-        startButton.setOnClickListener(v -> {
-            FeedbackUtils.playClickFeedback(this);
-            startActivity(new Intent(this, ContextActivity.class));
-        });
+
+    private void routeUser() {
+        try {
+            SecurePrefs prefs = new SecurePrefs(this);
+
+            boolean userLogged = isGoogleLogged();
+            boolean hasKey = prefs.hasApiKey();
+
+            if (!userLogged) {
+                startActivity(new Intent(this, LoginActivity.class));
+            } else if (!hasKey) {
+                startActivity(new Intent(this, SettingsActivity.class));
+            } else {
+                startActivity(new Intent(this, ContextActivity.class));
+            }
+
+        } catch (Exception e) {
+            startActivity(new Intent(this, SettingsActivity.class));
+        }
+
+        finish();
+    }
+
+    private boolean isGoogleLogged() {
+        return true;
     }
 }
