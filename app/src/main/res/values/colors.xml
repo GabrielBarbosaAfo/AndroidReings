@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="icon_full">#d19c4b</color>
+    <color name="medieval_gold">#C8A44A</color>
+    <color name="medieval_dark">#241A12</color>
+    <color name="google_blue_medieval">#2F4A78</color>
 </resources>

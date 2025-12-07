@@ -19,14 +19,16 @@
             android:id="@+id/background_full"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/fake_card_bg"
+            android:contentDescription="@string/frame_topo"
+            android:src="@drawable/bg_back_card"
             android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/frame_middle"
+            android:contentDescription="@string/frame_topo"
             android:layout_width="330dp"
             android:layout_height="match_parent"
-            android:src="@drawable/moldura_game"
+            android:src="@drawable/frame_game"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -62,13 +64,13 @@
             app:layout_constraintGuide_end="50dp" />
 
         <LinearLayout
-            android:id="@+id/moldura_titulo"
+            android:id="@+id/frame_title"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:background="@drawable/moldura_topo"
+            android:background="@drawable/frame_topo"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toTopOf="@id/guide_top">
@@ -84,34 +86,35 @@
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/moldura_imagem"
+            android:id="@+id/frame_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/moldura_game"
+            android:background="@drawable/frame_game"
             android:padding="12dp"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
-            app:layout_constraintTop_toBottomOf="@id/moldura_titulo"
+            app:layout_constraintTop_toBottomOf="@id/frame_title"
             app:layout_constraintHeight_percent="0.24">
 
             <ImageView
                 android:id="@+id/card_image"
+                android:contentDescription="@string/frame_game"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
         </FrameLayout>
 
         <LinearLayout
-            android:id="@+id/moldura_historia"
+            android:id="@+id/frame_history"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="14dp"
-            android:background="@drawable/moldura_topo"
+            android:background="@drawable/frame_topo"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
-            app:layout_constraintTop_toBottomOf="@id/moldura_imagem"
+            app:layout_constraintTop_toBottomOf="@id/frame_image"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom">
 
             <TextView

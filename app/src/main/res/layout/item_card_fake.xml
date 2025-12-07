@@ -14,8 +14,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fake_card_bg"
+        android:src="@drawable/bg_back_card"
         android:scaleType="centerCrop"
-        android:contentDescription="Fundo da carta falsa" />
+        android:contentDescription="@string/card_back" />
 
 </com.google.android.material.card.MaterialCardView>
