@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.throne.screens;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -22,6 +23,7 @@ import br.edu.ifsudestemg.throne.model.CardData;
 import br.edu.ifsudestemg.throne.utils.CardAdapter;
 import br.edu.ifsudestemg.throne.utils.FeedbackUtils;
 import br.edu.ifsudestemg.throne.views.PercentageIconView;
+import br.edu.ifsudestemg.throne.views.ShieldFillView;
 
 public class GameActivityNative extends AppCompatActivity {
 
@@ -48,28 +50,29 @@ public class GameActivityNative extends AppCompatActivity {
         animationLayer = findViewById(R.id.animation_layer);
         cardStackView = findViewById(R.id.card_stack_view);
 
-        initattribute();
+        initAttribute();
         startIntroAnimation();
     }
 
-    private void initattribute() {
+    private void initAttribute() {
 
-        PercentageIconView iconWealth = findViewById(R.id.icon_wealth);
-        iconWealth.setIcons(R.drawable.ic_wealth_empty, R.drawable.ic_wealth_full);
-        iconWealth.setPercentage(0.5f);
+        PercentageIconView progressWealth = findViewById(R.id.progress_wealth);
+        progressWealth.setIcons(R.drawable.ic_progress_empty, R.drawable.ic_progress_full);
+        progressWealth.setPercentage(0.5f);
 
-        PercentageIconView iconPeople = findViewById(R.id.icon_people);
-        iconPeople.setIcons(R.drawable.ic_people_empty, R.drawable.ic_people_full);
-        iconPeople.setPercentage(0.5f);
+        PercentageIconView progressArmy = findViewById(R.id.progress_army);
+        progressArmy.setIcons(R.drawable.ic_progress_empty, R.drawable.ic_progress_full);
+        progressArmy.setPercentage(0.5f);
 
-        PercentageIconView iconArmy = findViewById(R.id.icon_army);
-        iconArmy.setIcons(R.drawable.ic_army_empty, R.drawable.ic_army_full);
-        iconArmy.setPercentage(0.5f);
+        PercentageIconView progressPeople = findViewById(R.id.progress_people);
+        progressPeople.setIcons(R.drawable.ic_progress_empty, R.drawable.ic_progress_full);
+        progressPeople.setPercentage(0.5f);
 
-        PercentageIconView iconFaith = findViewById(R.id.icon_faith);
-        iconFaith.setIcons(R.drawable.ic_faith_empty, R.drawable.ic_faith_full);
-        iconFaith.setPercentage(0.5f);
+        PercentageIconView progressReligion = findViewById(R.id.progress_religion);
+        progressReligion.setIcons(R.drawable.ic_progress_empty, R.drawable.ic_progress_full);
+        progressReligion.setPercentage(0.5f);
     }
+
 
     private void startIntroAnimation() {
         animateFakeCard(0);
@@ -90,8 +93,6 @@ public class GameActivityNative extends AppCompatActivity {
             showRealGame();
             return;
         }
-
-        String text = "";
 
         View card = getLayoutInflater().inflate(R.layout.item_card_fake, animationLayer, false);
 
@@ -114,12 +115,8 @@ public class GameActivityNative extends AppCompatActivity {
                 .rotation(0f)
                 .setDuration(600)
                 .setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator())
-                .withStartAction(() -> {
-                    FeedbackUtils.playCardAppear(GameActivityNative.this);
-                })
-                .withEndAction(() -> {
-                    new Handler().postDelayed(() -> animateFakeCard(step + 1), 100);
-                })
+                .withStartAction(() -> FeedbackUtils.playCardAppear(GameActivityNative.this))
+                .withEndAction(() -> new Handler().postDelayed(() -> animateFakeCard(step + 1), 100))
                 .start();
     }
 
@@ -133,7 +130,7 @@ public class GameActivityNative extends AppCompatActivity {
             cardList.add(new CardData(
                     "REI HARRY",
                     text,
-                    R.drawable.bg_back_card
+                    R.drawable.png_bg_back_card
             ));
         }
 

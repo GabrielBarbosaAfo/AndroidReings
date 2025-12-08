@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_medieval"
+    android:background="@drawable/png_bg_medieval"
     tools:context=".main.MainActivity">
 
     <LinearLayout
@@ -34,7 +34,7 @@
         android:contentDescription="@string/frame_topo"
         android:layout_width="330dp"
         android:layout_height="120dp"
-        android:src="@drawable/frame_topo"
+        android:src="@drawable/png_frame_topo"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"
@@ -64,7 +64,7 @@
         android:layout_height="350dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/frame_base"
+        android:src="@drawable/png_frame_base"
         app:layout_constraintTop_toBottomOf="@id/top_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

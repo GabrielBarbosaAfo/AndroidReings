@@ -1,4 +1,4 @@
-package br.edu.ifsudestemg.throne.ia;
+package br.edu.ifsudestemg.throne.ai;
 
 import androidx.annotation.NonNull;
 

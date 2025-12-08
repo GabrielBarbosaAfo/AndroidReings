@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/frame_topo"
-            android:src="@drawable/bg_back_card"
+            android:src="@drawable/png_bg_back_card"
             android:scaleType="centerCrop" />
 
         <ImageView
@@ -28,7 +28,7 @@
             android:contentDescription="@string/frame_topo"
             android:layout_width="330dp"
             android:layout_height="match_parent"
-            android:src="@drawable/frame_game"
+            android:src="@drawable/png_frame_game"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +70,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:background="@drawable/frame_topo"
+            android:background="@drawable/png_frame_topo"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toTopOf="@id/guide_top">
@@ -89,7 +89,7 @@
             android:id="@+id/frame_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/frame_game"
+            android:background="@drawable/png_frame_game"
             android:padding="12dp"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
@@ -111,7 +111,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="14dp"
-            android:background="@drawable/frame_topo"
+            android:background="@drawable/png_frame_topo"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toBottomOf="@id/frame_image"
