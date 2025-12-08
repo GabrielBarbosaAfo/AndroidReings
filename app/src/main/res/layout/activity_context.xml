@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/png_bg_medieval">
 
+    <include
+        layout="@layout/layout_top_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ImageView
         android:id="@+id/top_frame"
         android:contentDescription="@string/frame_topo"
@@ -76,7 +83,7 @@
             android:autofillHints="noAutofill" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_start"
+            android:id="@+id/btn_context"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_game"

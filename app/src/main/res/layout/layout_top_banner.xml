@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_banner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:background="#230707"
+    android:visibility="gone">
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_medieval_triangle_gold"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/top_banner_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#E6D7B0"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/ic_medieval_triangle_gold"
+        android:contentDescription="@null"
+        android:rotation="180" />
+
+</LinearLayout>

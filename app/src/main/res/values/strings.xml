@@ -26,6 +26,9 @@
     <string name="msg_validating">Validando …</string>
 
 
+    <string name="msg_empty_context">Digite um contexto para iniciar o jogo</string>
+
+
     <string name="wealth_icon">Icone economia</string>
     <string name="people_icon">Icone população</string>
     <string name="army_icon">Icone exercito</string>

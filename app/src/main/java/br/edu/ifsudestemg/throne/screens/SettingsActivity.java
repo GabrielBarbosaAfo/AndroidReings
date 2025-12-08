@@ -1,7 +1,6 @@
 package br.edu.ifsudestemg.throne.screens;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
@@ -14,16 +13,14 @@ import br.edu.ifsudestemg.throne.R;
 import br.edu.ifsudestemg.throne.utils.ApiKeyValidator;
 import br.edu.ifsudestemg.throne.utils.FeedbackUtils;
 import br.edu.ifsudestemg.throne.utils.SecurePrefs;
+import br.edu.ifsudestemg.throne.utils.TopBanner;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final int BANNER_DURATION = 2500;
-    private static final int BANNER_ANIM = 250;
-
     private Button btnKey;
     private EditText inputKey;
-    private LinearLayout topBanner;
-    private TextView topBannerText;
+
+    private TopBanner topBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +32,20 @@ public class SettingsActivity extends AppCompatActivity {
     private void init() {
         btnKey = findViewById(R.id.btn_key);
         inputKey = findViewById(R.id.input_key);
-        topBanner = findViewById(R.id.top_banner);
-        topBannerText = findViewById(R.id.top_banner_text);
+
+        LinearLayout bannerLayout = findViewById(R.id.top_banner);
+        TextView bannerText = findViewById(R.id.top_banner_text);
+
+        topBanner = new TopBanner(bannerLayout, bannerText, 250, 2500);
 
         btnKey.setOnClickListener(v -> {
+
             FeedbackUtils.playClickFeedback(this);
 
             String key = inputKey.getText().toString().trim();
 
             if (key.isEmpty()) {
-                showTopBanner(getString(R.string.msg_empty_key));
+                topBanner.show(getString(R.string.msg_empty_key));
                 return;
             }
 
@@ -69,38 +70,18 @@ public class SettingsActivity extends AppCompatActivity {
                     SecurePrefs prefs = new SecurePrefs(this);
                     prefs.saveApiKey(apiKey);
 
-                    showTopBanner(getString(R.string.msg_valid_key));
+                    topBanner.show(getString(R.string.msg_valid_key));
 
                     startActivity(new Intent(this, ContextActivity.class));
                     finish();
 
                 } catch (Exception e) {
-                    showTopBanner(getString(R.string.msg_save_error));
+                    topBanner.show(getString(R.string.msg_save_error));
                 }
 
             } else {
-                showTopBanner(getString(R.string.msg_invalid_key));
+                topBanner.show(getString(R.string.msg_invalid_key));
             }
         });
-    }
-
-    private void showTopBanner(String message) {
-        topBannerText.setText(message);
-        topBanner.setVisibility(View.VISIBLE);
-
-        topBanner.setTranslationY(-topBanner.getHeight());
-        topBanner.animate()
-                .translationY(0)
-                .setDuration(BANNER_ANIM)
-                .start();
-
-        topBanner.postDelayed(() ->
-                        topBanner.animate()
-                                .translationY(-topBanner.getHeight())
-                                .setDuration(BANNER_ANIM)
-                                .withEndAction(() -> topBanner.setVisibility(View.GONE))
-                                .start(),
-                BANNER_DURATION
-        );
     }
 }
