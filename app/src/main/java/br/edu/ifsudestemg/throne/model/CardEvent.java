@@ -1,34 +1,15 @@
 package br.edu.ifsudestemg.throne.model;
 
 public class CardEvent {
+    private final String title;
+    private final String description;
+    private final int effectPeopleYes, effectArmyYes, effectWealthYes, effectFaithYes;
+    private final int effectPeopleNo, effectArmyNo, effectWealthNo, effectFaithNo;
 
-    private String title;
-    private String description;
+    public CardEvent(String title, String description,
+                     int effectPeopleYes, int effectArmyYes, int effectWealthYes, int effectFaithYes,
+                     int effectPeopleNo, int effectArmyNo, int effectWealthNo, int effectFaithNo) {
 
-    // Efeitos caso o jogador escolha SIM
-    private int effectPeopleYes;
-    private int effectArmyYes;
-    private int effectWealthYes;
-    private int effectFaithYes;
-
-    // Efeitos caso o jogador escolha NÃO
-    private int effectPeopleNo;
-    private int effectArmyNo;
-    private int effectWealthNo;
-    private int effectFaithNo;
-
-    public CardEvent(
-            String title,
-            String description,
-            int effectPeopleYes,
-            int effectArmyYes,
-            int effectWealthYes,
-            int effectFaithYes,
-            int effectPeopleNo,
-            int effectArmyNo,
-            int effectWealthNo,
-            int effectFaithNo
-    ) {
         this.title = title;
         this.description = description;
         this.effectPeopleYes = effectPeopleYes;
@@ -49,36 +30,35 @@ public class CardEvent {
         return description;
     }
 
-    public int getEffectPeopleYes() {
+    public int getPeopleYes() {
         return effectPeopleYes;
     }
 
-    public int getEffectArmyYes() {
+    public int getArmyYes() {
         return effectArmyYes;
     }
 
-    public int getEffectWealthYes() {
+    public int getWealthYes() {
         return effectWealthYes;
     }
 
-    public int getEffectFaithYes() {
+    public int getFaithYes() {
         return effectFaithYes;
     }
 
-    public int getEffectPeopleNo() {
+    public int getPeopleNo() {
         return effectPeopleNo;
     }
 
-    public int getEffectArmyNo() {
+    public int getArmyNo() {
         return effectArmyNo;
     }
 
-    public int getEffectWealthNo() {
+    public int getWealthNo() {
         return effectWealthNo;
     }
 
-    public int getEffectFaithNo() {
+    public int getFaithNo() {
         return effectFaithNo;
     }
 }
-

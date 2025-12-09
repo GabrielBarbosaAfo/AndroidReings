@@ -1,24 +1,27 @@
 package br.edu.ifsudestemg.throne.utils;
 
 import android.animation.ValueAnimator;
-import android.view.animation.AccelerateDecelerateInterpolator;
-
 import br.edu.ifsudestemg.throne.views.PercentageIconView;
 
 public class AttributeBarAnimator {
 
-    public static void animateTo(PercentageIconView bar, float targetValue, long durationMs) {
+    public static void animateTo(PercentageIconView view, float targetRatio, long duration) {
 
-        float clampedTarget = Math.max(0f, Math.min(1f, targetValue));
-        ValueAnimator animator = ValueAnimator.ofFloat(0f, clampedTarget);
-        animator.setDuration(durationMs);
-        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        if (view == null)
+            return;
 
+        float start = view.getPercentage();
+        float end = Math.max(0f, Math.min(1f, targetRatio));
+
+        if (Math.abs(end - start) < 0.001f)
+            return;
+
+        ValueAnimator animator = ValueAnimator.ofFloat(start, end);
+        animator.setDuration(duration);
         animator.addUpdateListener(animation -> {
             float value = (float) animation.getAnimatedValue();
-            bar.setPercentage(value);
+            view.setPercentage(value);
         });
-
         animator.start();
     }
 }

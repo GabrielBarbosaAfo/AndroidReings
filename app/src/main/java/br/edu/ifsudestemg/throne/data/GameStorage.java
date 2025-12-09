@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -37,7 +38,12 @@ public class GameStorage {
     public GameContext loadContext() {
         String json = prefs.getString(KEY_CONTEXT, null);
         if (json == null) return null;
-        return gson.fromJson(json, GameContext.class);
+
+        try {
+            return gson.fromJson(json, GameContext.class);
+        } catch (JsonSyntaxException e) {
+            return null;
+        }
     }
 
     public void saveState(GameState state) {
@@ -47,7 +53,16 @@ public class GameStorage {
     public GameState loadState() {
         String json = prefs.getString(KEY_STATE, null);
         if (json == null) return null;
-        return gson.fromJson(json, GameState.class);
+
+        try {
+            GameState state = gson.fromJson(json, GameState.class);
+
+            if (state == null) return new GameState();
+            return state;
+
+        } catch (JsonSyntaxException e) {
+            return new GameState();
+        }
     }
 
     public void saveBuffer(List<CardEvent> buffer) {
@@ -58,8 +73,15 @@ public class GameStorage {
         String json = prefs.getString(KEY_BUFFER, null);
         if (json == null) return new ArrayList<>();
 
-        Type type = new TypeToken<List<CardEvent>>(){}.getType();
-        return gson.fromJson(json, type);
+        try {
+            Type type = new TypeToken<List<CardEvent>>(){}.getType();
+            List<CardEvent> list = gson.fromJson(json, type);
+
+            return (list != null) ? list : new ArrayList<>();
+
+        } catch (JsonSyntaxException e) {
+            return new ArrayList<>();
+        }
     }
 
     public void saveCurrentIndex(int index) {

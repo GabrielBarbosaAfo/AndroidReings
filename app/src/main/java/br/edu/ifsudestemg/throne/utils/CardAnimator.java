@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsudestemg.throne.R;
-import br.edu.ifsudestemg.throne.utils.FeedbackUtils;
 
 public class CardAnimator {
 

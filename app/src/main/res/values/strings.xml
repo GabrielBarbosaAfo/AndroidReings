@@ -24,6 +24,7 @@
     <string name="msg_save_error">Erro ao salvar a chave.</string>
     <string name="msg_invalid_key">Chave inválida</string>
     <string name="msg_validating">Validando …</string>
+    <string name="msg_error_key">Chave de API não configurada</string>
 
 
     <string name="msg_empty_context">Digite um contexto para iniciar o jogo</string>

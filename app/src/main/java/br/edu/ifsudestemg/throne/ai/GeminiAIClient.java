@@ -28,14 +28,23 @@ public class GeminiAIClient {
 
     public String generateText(@NonNull String prompt) throws IOException, JSONException {
 
-        String modelId = "gemini-2.0-flash";
+        String modelId = "gemini-2.5-flash";
         String apiUrl = "https://generativelanguage.googleapis.com/v1/models/"
                 + modelId + ":generateContent?key=" + apiKey;
 
-        JSONObject requestBodyJson = buildRequestJson(prompt);
+        JSONObject json = new JSONObject();
+        JSONArray contents = new JSONArray();
+        JSONObject part = new JSONObject();
+        part.put("text", prompt);
+
+        JSONObject content = new JSONObject();
+        content.put("parts", new JSONArray().put(part));
+        contents.put(content);
+
+        json.put("contents", contents);
 
         RequestBody body = RequestBody.create(
-                requestBodyJson.toString(),
+                json.toString(),
                 MediaType.parse("application/json")
         );
 
@@ -44,21 +53,22 @@ public class GeminiAIClient {
                 .post(body)
                 .build();
 
-        try (Response response = client.newCall(request).execute()) {
+        Response response = client.newCall(request).execute();
 
-            if (!response.isSuccessful()) {
-                throw new IOException("Error na API Gemini: " + response.code() + " " + response.message());
-            }
-
-            String responseStr = response.body() != null ? response.body().string() : "";
-            JSONObject json = new JSONObject(responseStr);
-
-            JSONArray candidates = json.getJSONArray("candidates");
-            JSONObject content = candidates.getJSONObject(0).getJSONObject("content");
-            JSONArray parts = content.getJSONArray("parts");
-
-            return parts.getJSONObject(0).getString("text");
+        if (!response.isSuccessful()) {
+            throw new IOException("Erro na API Gemini: " + response.code());
         }
+
+        assert response.body() != null;
+        String responseBody = response.body().string();
+
+        JSONObject responseJson = new JSONObject(responseBody);
+        JSONArray candidates = responseJson.getJSONArray("candidates");
+        JSONObject firstCandidate = candidates.getJSONObject(0);
+        JSONObject contentResponse = firstCandidate.getJSONObject("content");
+        JSONArray parts = contentResponse.getJSONArray("parts");
+
+        return parts.getJSONObject(0).getString("text");
     }
 
     @NonNull

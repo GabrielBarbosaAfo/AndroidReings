@@ -1,8 +1,5 @@
 package br.edu.ifsudestemg.throne.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameState {
 
     private int people = 50;
@@ -10,32 +7,53 @@ public class GameState {
     private int wealth = 50;
     private int faith = 50;
 
-    private final List<String> lastEvents = new ArrayList<>();
-
-    public int getPeople() { return people; }
-    public int getArmy() { return army; }
-    public int getWealth() { return wealth; }
-    public int getFaith() { return faith; }
-
-    public void applyEffects(int p, int a, int w, int f) {
-        people = clamp(people + p);
-        army = clamp(army + a);
-        wealth = clamp(wealth + w);
-        faith = clamp(faith + f);
+    public int getPeople() {
+        return people;
     }
 
-    public void addEvent(String eventDescription) {
-        if (lastEvents.size() > 3) {
-            lastEvents.remove(0);
+    public int getArmy() {
+        return army;
+    }
+
+    public int getWealth() {
+        return wealth;
+    }
+
+    public int getFaith() {
+        return faith;
+    }
+
+    public void setPeople(int value) {
+        this.people = clamp(value);
+    }
+
+    public void setArmy(int value) {
+        this.army = clamp(value);
+    }
+
+    public void setWealth(int value) {
+        this.wealth = clamp(value);
+    }
+
+    public void setFaith(int value) {
+        this.faith = clamp(value);
+    }
+
+    public void applyChoice(CardEvent card, boolean isYes) {
+        if (isYes) {
+            setPeople(people + card.getPeopleYes());
+            setArmy(army + card.getArmyYes());
+            setWealth(wealth + card.getWealthYes());
+            setFaith(faith + card.getFaithYes());
+        } else {
+            setPeople(people + card.getPeopleNo());
+            setArmy(army + card.getArmyNo());
+            setWealth(wealth + card.getWealthNo());
+            setFaith(faith + card.getFaithNo());
         }
-        lastEvents.add(eventDescription);
     }
 
-    public List<String> getLastEvents() {
-        return lastEvents;
-    }
-
-    private int clamp(int value) {
-        return Math.max(0, Math.min(100, value));
+    private int clamp(int v) {
+        return Math.max(0, Math.min(100, v));
     }
 }

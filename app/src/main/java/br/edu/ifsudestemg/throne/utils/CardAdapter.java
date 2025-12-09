@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private final Set<Integer> revealedIndices = new HashSet<>();
 
     public CardAdapter(List<CardData> cards) {
-        this.cards = cards;
+        this.cards = new ArrayList<>(cards);
+    }
+
+    public void addCard(CardData card) {
+        cards.add(card);
+        notifyItemInserted(cards.size() - 1);
     }
 
     public void revealCard(int position) {

@@ -1,10 +1,9 @@
 package br.edu.ifsudestemg.throne.model;
 
 public class GameContext {
-
-    private String userContext;
-    private long createdAt;
-    private String initialSeed;
+    private final String userContext;
+    private final long createdAt;
+    private final String initialSeed;
 
     public GameContext(String userContext) {
         this.userContext = userContext;
@@ -12,16 +11,7 @@ public class GameContext {
         this.initialSeed = "seed-" + createdAt;
     }
 
-    public String getUserContext() {
-        return userContext;
-    }
-
-    public long getCreatedAt() {
-        return createdAt;
-    }
-
-    public String getInitialSeed() {
-        return initialSeed;
-    }
+    public String getUserContext() { return userContext; }
+    public long getCreatedAt() { return createdAt; }
+    public String getInitialSeed() { return initialSeed; }
 }
-
