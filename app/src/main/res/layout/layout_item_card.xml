@@ -26,7 +26,7 @@
         <ImageView
             android:id="@+id/frame_middle"
             android:contentDescription="@string/frame_topo"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="match_parent"
             android:src="@drawable/png_frame_game"
             android:scaleType="fitXY"
@@ -40,28 +40,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="50dp" />
+            app:layout_constraintGuide_begin="30dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="50dp" />
+            app:layout_constraintGuide_end="30dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="50dp" />
+            app:layout_constraintGuide_begin="30dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="50dp" />
+            app:layout_constraintGuide_end="30dp" />
 
         <LinearLayout
             android:id="@+id/frame_title"
@@ -70,7 +70,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:background="@drawable/png_frame_topo"
+            android:background="@drawable/png_frame_game_middle"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toTopOf="@id/guide_top">
@@ -94,7 +94,7 @@
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toBottomOf="@id/frame_title"
-            app:layout_constraintHeight_percent="0.24">
+            app:layout_constraintHeight_percent="0.32">
 
             <ImageView
                 android:id="@+id/card_image"
@@ -129,7 +129,6 @@
             android:gravity="start"
             android:lineSpacingExtra="4dp" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

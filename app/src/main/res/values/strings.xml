@@ -40,5 +40,16 @@
     <string name="dialog_continue">Continuar</string>
     <string name="dialog_new_game">Novo jogo</string>
 
+    <!-- Ícones e botões -->
+    <string name="open_menu">Abrir menu</string>
+    <string name="close_menu">Fechar menu</string>
+
+    <!-- Títulos -->
+    <string name="menu_title_score">Placar</string>
+    <string name="menu_title_settings">Configurações</string>
+
+
+    <string name="menu_content_score">(Conteúdo do placar)</string>
+    <string name="menu_content_settings">(Configurações do jogo)</string>
 
 </resources>
