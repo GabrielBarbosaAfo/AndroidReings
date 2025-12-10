@@ -43,7 +43,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_seal_close"
+                android:src="@drawable/ic_btn_close"
                 android:contentDescription="@string/close_menu"
                 android:background="?attr/selectableItemBackgroundBorderless" />
 
