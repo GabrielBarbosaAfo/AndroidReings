@@ -37,20 +37,6 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_continue"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="@string/dialog_continue"
-            android:background="@drawable/btn_medieval"
-            android:backgroundTint="@null"
-            android:textColor="#FFF" />
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="1dp" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_new"
             android:layout_width="0dp"
             android:layout_height="45dp"
@@ -58,6 +44,20 @@
             android:text="@string/dialog_new_game"
             android:backgroundTint="@null"
             android:background="@drawable/btn_medieval_red"
+            android:textColor="#FFF" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continue"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="@string/dialog_continue"
+            android:background="@drawable/btn_medieval"
+            android:backgroundTint="@null"
             android:textColor="#FFF" />
     </LinearLayout>
 </LinearLayout>

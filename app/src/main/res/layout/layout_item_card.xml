@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#1d0f03"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:fontFamily="serif"
                 android:gravity="center" />
         </LinearLayout>
@@ -109,25 +109,28 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="14dp"
-            android:background="@drawable/png_frame_topo"
+            android:gravity="start"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingTop="40dp"
+            android:background="@drawable/png_frame_game_middle"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toBottomOf="@id/frame_image"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom">
 
-            <TextView
-                android:id="@+id/card_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#1d0f03"
-                android:textSize="16sp"
-                android:fontFamily="serif"
-                android:gravity="center"
-                android:lineSpacingExtra="4dp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/card_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#1d0f03"
+            android:textSize="15sp"
+            android:fontFamily="serif"
+            android:gravity="start"
+            android:lineSpacingExtra="4dp" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
