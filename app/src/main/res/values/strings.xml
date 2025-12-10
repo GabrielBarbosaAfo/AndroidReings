@@ -35,5 +35,10 @@
     <string name="army_icon">Icone exercito</string>
     <string name="religion_icon">Icone religião</string>
 
+    <string name="dialog_title">Jogo encontrado</string>
+    <string name="dialog_message">Deseja continuar o jogo anterior?</string>
+    <string name="dialog_continue">Continuar</string>
+    <string name="dialog_new_game">Novo jogo</string>
+
 
 </resources>
