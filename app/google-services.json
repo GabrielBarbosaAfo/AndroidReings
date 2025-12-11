@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1036170783962",
+    "project_id": "reignsia-f6c81",
+    "storage_bucket": "reignsia-f6c81.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036170783962:android:f7316661a8e756cb7609e3",
+        "android_client_info": {
+          "package_name": "br.edu.ifsudestemg.throne"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwfPIEkmDuiyIWZQ5zXe92ML7jVy6fZuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

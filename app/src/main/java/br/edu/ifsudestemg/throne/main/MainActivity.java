@@ -16,14 +16,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        routeUser();
+        routeUserForTest();
+
     }
 
-    private void routeUser() {
+    private void routeUserForTest() {
+        startActivity(new Intent(this, LoginActivity.class));
+
+        finish();
+    }
+
+    private void routeUserOriginal() {
         try {
             SecurePrefs prefs = new SecurePrefs(this);
 
-            boolean userLogged = isGoogleLogged();
+            boolean userLogged = isGoogleLogged(); // Isso precisa ser atualizado para checar o Firebase Auth
             boolean hasKey = prefs.hasApiKey();
 
             if (!userLogged) {
