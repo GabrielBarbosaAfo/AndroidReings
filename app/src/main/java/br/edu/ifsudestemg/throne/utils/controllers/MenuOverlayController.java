@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.throne.utils.controllers;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,8 @@ public class MenuOverlayController {
 
     public MenuOverlayController(@NonNull View rootView) {
 
+        Activity activity = (Activity) rootView.getContext();
+
         overlayMenu  = rootView.findViewById(R.id.overlay_menu);
 
         pageScore    = rootView.findViewById(R.id.page_score);
@@ -42,6 +45,9 @@ public class MenuOverlayController {
         btnCloseMenu = rootView.findViewById(R.id.btn_close_menu);
 
         scoreBar     = rootView.findViewById(R.id.score_bar);
+
+        new SettingsPageController(activity, pageSettings);
+        new ScorePageController(pageScore);
 
         setupListeners();
 
@@ -83,7 +89,6 @@ public class MenuOverlayController {
     }
 
     private void setActiveTab(boolean scoreActive) {
-
         if (scoreActive) {
             iconScore.setColorFilter(0xFFE0C060);
             iconSettings.setColorFilter(0xFF808080);

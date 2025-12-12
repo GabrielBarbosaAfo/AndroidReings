@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="#11253e" />
+    <!-- Estado pressionado -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#0E1C30"/> <!-- Cor mais escura ao pressionar -->
+            <corners android:radius="10dp"/>
+            <padding android:left="12dp" android:top="8dp" android:right="12dp" android:bottom="8dp"/>
+            <stroke android:width="1.5dp" android:color="#8B5A2B"/>
+        </shape>
+    </item>
 
-    <stroke android:width="1.5dp" android:color="#8B5A2B" />
+    <!-- Estado normal -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#11253e"
+                android:endColor="#15283f"/>
+            <corners android:radius="10dp"/>
+            <padding android:left="12dp" android:top="8dp" android:right="12dp" android:bottom="8dp"/>
+            <stroke android:width="1.5dp" android:color="#8B5A2B"/>
+        </shape>
+    </item>
 
-    <corners android:radius="12dp" />
-
-    <padding
-        android:left="12dp"
-        android:top="8dp"
-        android:right="12dp"
-        android:bottom="8dp" />
-</shape>
+</selector>

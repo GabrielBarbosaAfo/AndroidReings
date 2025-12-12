@@ -18,8 +18,9 @@
             android:layout_height="wrap_content"
             android:text="@string/score"
             android:textColor="#E6D5A3"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="@font/cinzel"
             android:padding="6dp"/>
 
         <LinearLayout

@@ -40,10 +40,12 @@ public class LoginActivity extends AppCompatActivity {
                         public void onSuccess() {
                             saveLocalLogin();
                             navigateToSettings();
+                            unlockGoogleButton();
                         }
 
                         @Override
                         public void onFail(String error) {
+                            unlockGoogleButton();
                             topBanner.show(error);
                         }
                     });
@@ -84,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
         googleButton.setOnClickListener(v -> {
             FeedbackUtils.playClickFeedback(this);
+            lockGoogleButton();
             googleLauncher.launch(auth.getGoogleSignInIntent(WEB_CLIENT_ID));
         });
 
@@ -98,6 +101,9 @@ public class LoginActivity extends AppCompatActivity {
             topBanner.show(getString(R.string.empty_field));
             return;
         }
+
+        lockLoginButton();
+
         auth.findEmailByUsername(username, new AuthManager.EmailLookupCallback() {
 
             @Override
@@ -118,15 +124,18 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onNotFound() {
+                unlockLoginButton();
                 topBanner.show(getString(R.string.user_not_found));
             }
 
             @Override
             public void onError(String error) {
+                unlockLoginButton();
                 topBanner.show(error);
             }
         });
     }
+
     private void saveLocalLogin() {
         try {
             SecurePrefs prefs = new SecurePrefs(this);
@@ -138,4 +147,30 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, SettingsActivity.class));
         finish();
     }
+
+    private void lockLoginButton() {
+        loginButton.setEnabled(false);
+        loginButton.setText(getString(R.string.login_btn_enter_process));
+        loginButton.setAlpha(0.6f);
+    }
+
+    private void unlockLoginButton() {
+        loginButton.setEnabled(true);
+        loginButton.setText(getString(R.string.login_btn_enter));
+        loginButton.setAlpha(1f);
+    }
+
+    private void lockGoogleButton() {
+        googleButton.setEnabled(false);
+        googleButton.setText(getString(R.string.login_btn_google_process));
+        googleButton.setAlpha(0.6f);
+    }
+
+    private void unlockGoogleButton() {
+        googleButton.setEnabled(true);
+        googleButton.setText(getString(R.string.login_btn_google_sign));
+        googleButton.setAlpha(1f);
+    }
+
+
 }

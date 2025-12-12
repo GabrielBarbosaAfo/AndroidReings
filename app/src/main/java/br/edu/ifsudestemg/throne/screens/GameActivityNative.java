@@ -64,9 +64,10 @@ public class GameActivityNative extends AppCompatActivity {
     private void initComponents() {
         animationLayer = findViewById(R.id.animation_layer);
         cardStackView = findViewById(R.id.card_stack_view);
+        View root = findViewById(android.R.id.content);
 
-        menuConfigController = new GameMenuController(findViewById(android.R.id.content));
-        attributeController = new AttributeBarController(findViewById(android.R.id.content));
+        menuConfigController = new GameMenuController(root);
+        attributeController = new AttributeBarController(root);
         attributeController.setupIcons();
     }
 

@@ -65,13 +65,17 @@ public class AuthManager {
     }
 
     public Intent getGoogleSignInIntent(String webClientId) {
+
         if (googleClient == null) {
+
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
                     .requestIdToken(webClientId)
                     .build();
+
             googleClient = GoogleSignIn.getClient(activity, gso);
         }
+
         return googleClient.getSignInIntent();
     }
 

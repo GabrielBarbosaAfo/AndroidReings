@@ -59,7 +59,6 @@ public class SettingsActivity extends AppCompatActivity {
         } catch (Exception ignored) {}
     }
 
-
     private void saveApiKey() {
 
         FeedbackUtils.playClickFeedback(this);
@@ -70,22 +69,19 @@ public class SettingsActivity extends AppCompatActivity {
             return;
         }
 
-        btnSaveKey.setEnabled(false);
-        btnSaveKey.setText(getString(R.string.msg_validating));
+        lockKeyButton();
 
         new ApiKeyValidator().validateKey(apiKey, (isValid, message) -> {
-            btnSaveKey.setEnabled(true);
 
-            btnSaveKey.setText(getString(R.string.btn_key_save));
+            unlockKeyButton();
 
             if (isValid) {
                 saveApiKeyLocally(apiKey);
                 topBanner.show(getString(R.string.msg_valid_key));
 
-                new android.os.Handler().postDelayed(() -> {
-                    startActivity(new Intent(this, ContextActivity.class));
-                    finish();
-                }, 1000);
+                startActivity(new Intent(this, ContextActivity.class));
+                finish();
+
             } else {
                 topBanner.show(getString(R.string.msg_invalid_key));
             }
@@ -97,5 +93,17 @@ public class SettingsActivity extends AppCompatActivity {
             SecurePrefs prefs = new SecurePrefs(this);
             prefs.saveApiKey(apiKey);
         } catch (Exception ignored) {}
+    }
+
+    private void lockKeyButton() {
+        btnSaveKey.setEnabled(false);
+        btnSaveKey.setText(getString(R.string.msg_validating));
+        btnSaveKey.setAlpha(0.6f);
+    }
+
+    private void unlockKeyButton() {
+        btnSaveKey.setEnabled(true);
+        btnSaveKey.setText(getString(R.string.btn_key_save));
+        btnSaveKey.setAlpha(1f);
     }
 }

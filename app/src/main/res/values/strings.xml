@@ -21,8 +21,11 @@
     <string name="login_password">Senha</string>
     <string name="login_register">Não tem conta? Registre-se</string>
     <string name="login_or">ou</string>
-    <string name="login_btn_google_sign">Entre com o Google</string>
+    <string name="login_btn_google_sign">Entrar com Google</string>
+
     <string name="login_btn_enter">Entrar</string>
+    <string name="login_btn_enter_process">Entrando …</string>
+    <string name="login_btn_google_process">Conectando …</string>
 
     <string name="register_title">Registro</string>
     <string name="register_name_user_real">Nome Real</string>
