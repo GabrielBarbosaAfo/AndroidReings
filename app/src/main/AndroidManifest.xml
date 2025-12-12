@@ -15,12 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReignsIA">
 
-        <activity android:name=".screens.RegisterActivity" />
+        <activity android:name=".screens.setting.RegisterActivity" />
         <activity
-            android:name=".screens.LoginActivity"
+            android:name=".screens.setting.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.SettingsActivity"
+            android:name=".screens.setting.SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".screens.GameActivityNative"
@@ -33,7 +33,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".screens.SplashActivity"
+            android:name=".screens.init.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

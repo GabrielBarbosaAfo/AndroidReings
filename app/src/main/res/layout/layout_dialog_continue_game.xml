@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="22dp"
+    android:gravity="center"
+    android:background="@drawable/bg_dialog_medieval"
+    android:animation="@anim/popup_show">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_title"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#EED8A6"
+        android:fontFamily="@font/cinzel"
+        android:paddingBottom="10dp" />
+
+    <TextView
+        android:id="@+id/txt_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_message"
+        android:textSize="16sp"
+        android:textColor="#DCC495"
+        android:gravity="center"
+        android:paddingBottom="22dp"
+        android:fontFamily="@font/cinzel" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_new"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="@string/dialog_new_game"
+            android:backgroundTint="@null"
+            android:background="@drawable/cp_btn_medieval_red"
+            android:textColor="#FFF" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continue"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="@string/dialog_continue"
+            android:background="@drawable/cp_btn_medieval"
+            android:backgroundTint="@null"
+            android:textColor="#FFF" />
+    </LinearLayout>
+</LinearLayout>

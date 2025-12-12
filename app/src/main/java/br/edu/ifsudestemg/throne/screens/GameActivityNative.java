@@ -18,19 +18,26 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.edu.ifsudestemg.throne.R;
+import br.edu.ifsudestemg.throne.utils.controllers.AttributeBarController;
+import br.edu.ifsudestemg.throne.utils.controllers.GameMenuController;
+import br.edu.ifsudestemg.throne.data.GameStorage;
 import br.edu.ifsudestemg.throne.model.CardData;
+import br.edu.ifsudestemg.throne.model.GameContext;
 import br.edu.ifsudestemg.throne.utils.CardAdapter;
-import br.edu.ifsudestemg.throne.utils.FeedbackUtils;
-import br.edu.ifsudestemg.throne.views.PercentageIconView;
+import br.edu.ifsudestemg.throne.utils.design.CardAnimator;
+import br.edu.ifsudestemg.throne.utils.design.FeedbackUtils;
 
 public class GameActivityNative extends AppCompatActivity {
 
     private FrameLayout animationLayer;
+
     private CardStackView cardStackView;
 
     private CardAdapter cardAdapter;
 
-    private final List<View> fakeCardsList = new ArrayList<>();
+    private AttributeBarController attributeController;
+
+    private GameMenuController menuConfigController;
 
     private final List<String> realGameCards = Arrays.asList(
             "O tesouro real foi roubado. Prender o suspeito?",
@@ -42,85 +49,56 @@ public class GameActivityNative extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_native);
 
-        animationLayer = findViewById(R.id.animation_layer);
-        cardStackView = findViewById(R.id.card_stack_view);
+        if (!validateUserContext())
+            return;
 
-        initattribute();
+        initComponents();
+
         startIntroAnimation();
     }
 
-    private void initattribute() {
+    private void initComponents() {
+        animationLayer = findViewById(R.id.animation_layer);
+        cardStackView = findViewById(R.id.card_stack_view);
 
-        PercentageIconView iconWealth = findViewById(R.id.icon_wealth);
-        iconWealth.setIcons(R.drawable.ic_wealth_empty, R.drawable.ic_wealth_full);
-        iconWealth.setPercentage(0.5f);
+        menuConfigController = new GameMenuController(findViewById(android.R.id.content));
+        attributeController = new AttributeBarController(findViewById(android.R.id.content));
+        attributeController.setupIcons();
+    }
 
-        PercentageIconView iconPeople = findViewById(R.id.icon_people);
-        iconPeople.setIcons(R.drawable.ic_people_empty, R.drawable.ic_people_full);
-        iconPeople.setPercentage(0.5f);
+    private boolean validateUserContext() {
+        String userContext = getIntent().getStringExtra("USER_CONTEXT");
 
-        PercentageIconView iconArmy = findViewById(R.id.icon_army);
-        iconArmy.setIcons(R.drawable.ic_army_empty, R.drawable.ic_army_full);
-        iconArmy.setPercentage(0.5f);
+        if (userContext == null || userContext.trim().isEmpty()) {
+            finish();
+            return false;
+        }
 
-        PercentageIconView iconFaith = findViewById(R.id.icon_faith);
-        iconFaith.setIcons(R.drawable.ic_faith_empty, R.drawable.ic_faith_full);
-        iconFaith.setPercentage(0.5f);
+        GameStorage storage = new GameStorage(this);
+        if (storage.loadContext() == null) {
+            storage.saveContext(new GameContext(userContext));
+        }
+
+        return true;
     }
 
     private void startIntroAnimation() {
-        animateFakeCard(0);
+        CardAnimator animator = new CardAnimator(animationLayer, this, 4);
+
+        animator.startAnimation(() -> {
+            showAttributeBar();
+            menuConfigController.showMenu();
+            showRealGame();
+        });
     }
 
-    private void animateFakeCard(int step) {
-
-        final int TOTAL_STEPS = 4;
-
-        if (step >= TOTAL_STEPS) {
-
-            for (View card : fakeCardsList) {
-                if (card.getParent() != null) {
-                    animationLayer.removeView(card);
-                }
-            }
-
-            showRealGame();
-            return;
-        }
-
-        String text = "";
-
-        View card = getLayoutInflater().inflate(R.layout.item_card_fake, animationLayer, false);
-
-        animationLayer.addView(card);
-        fakeCardsList.add(card);
-
-        card.setTranslationX(-animationLayer.getWidth() * 0.5f);
-        card.setTranslationY(-animationLayer.getHeight() * 0.5f);
-        card.setAlpha(0f);
-        card.setScaleX(0.7f);
-        card.setScaleY(0.7f);
-        card.setRotation(10f);
-
-        card.animate()
-                .translationX(0f)
-                .translationY(0f)
-                .alpha(1f)
-                .scaleX(1f)
-                .scaleY(1f)
-                .rotation(0f)
-                .setDuration(600)
-                .setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator())
-                .withStartAction(() -> {
-                    FeedbackUtils.playCardAppear(GameActivityNative.this);
-                })
-                .withEndAction(() -> {
-                    new Handler().postDelayed(() -> animateFakeCard(step + 1), 100);
-                })
-                .start();
+    private void showAttributeBar() {
+        attributeController.show();
+        attributeController.animateAll(1200);
     }
 
     private void showRealGame() {
@@ -128,7 +106,6 @@ public class GameActivityNative extends AppCompatActivity {
         cardStackView.setVisibility(View.VISIBLE);
 
         List<CardData> cardList = new ArrayList<>();
-
         for (String text : realGameCards) {
             cardList.add(new CardData(
                     "REI HARRY",
@@ -142,9 +119,7 @@ public class GameActivityNative extends AppCompatActivity {
         CardStackListener listener = new CardStackListener() {
             @Override
             public void onCardSwiped(Direction direction) {
-
                 FeedbackUtils.playClickFeedback(GameActivityNative.this);
-
                 String answer = (direction == Direction.Right) ? "Sim" : "Não";
             }
 
@@ -161,6 +136,7 @@ public class GameActivityNative extends AppCompatActivity {
                     cardAdapter.revealCard(position);
                 });
             }
+
             @Override public void onCardDisappeared(View view, int position) {}
         };
 

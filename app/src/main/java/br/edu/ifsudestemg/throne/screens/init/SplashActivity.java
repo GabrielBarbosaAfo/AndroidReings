@@ -1,4 +1,4 @@
-package br.edu.ifsudestemg.throne.screens;
+package br.edu.ifsudestemg.throne.screens.init;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

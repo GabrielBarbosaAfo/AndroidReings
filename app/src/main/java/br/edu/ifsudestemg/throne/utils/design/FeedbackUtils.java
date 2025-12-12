@@ -1,5 +1,5 @@
 // utils/FeedbackUtils.java
-package br.edu.ifsudestemg.throne.utils;
+package br.edu.ifsudestemg.throne.utils.design;
 
 import android.content.Context;
 import android.media.MediaPlayer;

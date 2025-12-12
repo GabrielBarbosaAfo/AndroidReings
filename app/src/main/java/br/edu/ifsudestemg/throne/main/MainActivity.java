@@ -5,50 +5,56 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import br.edu.ifsudestemg.throne.screens.ContextActivity;
-import br.edu.ifsudestemg.throne.screens.LoginActivity;
-import br.edu.ifsudestemg.throne.screens.SettingsActivity;
-import br.edu.ifsudestemg.throne.utils.SecurePrefs;
+import br.edu.ifsudestemg.throne.screens.setting.LoginActivity;
+import br.edu.ifsudestemg.throne.screens.setting.SettingsActivity;
+import br.edu.ifsudestemg.throne.data.SecurePrefs;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+
+    private SecurePrefs securePrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        routeUserForTest();
-
+        init();
+        routeUser();
     }
 
-    private void routeUserForTest() {
-        startActivity(new Intent(this, LoginActivity.class));
-
-        finish();
-    }
-
-    private void routeUserOriginal() {
+    private void init() {
+        mAuth = FirebaseAuth.getInstance();
         try {
-            SecurePrefs prefs = new SecurePrefs(this);
-
-            boolean userLogged = isGoogleLogged(); // Isso precisa ser atualizado para checar o Firebase Auth
-            boolean hasKey = prefs.hasApiKey();
-
-            if (!userLogged) {
-                startActivity(new Intent(this, LoginActivity.class));
-            } else if (!hasKey) {
-                startActivity(new Intent(this, SettingsActivity.class));
-            } else {
-                startActivity(new Intent(this, ContextActivity.class));
-            }
-
+            securePrefs = new SecurePrefs(this);
         } catch (Exception e) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            securePrefs = null;
         }
-
-        finish();
     }
 
-    private boolean isGoogleLogged() {
-        return true;
+    private void routeUser() {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            navigateTo(LoginActivity.class);
+        } else if (!hasApiKey()) {
+            navigateTo(SettingsActivity.class);
+        } else {
+            navigateTo(ContextActivity.class);
+        }
+    }
+
+    private boolean hasApiKey() {
+        return securePrefs != null && securePrefs.hasApiKey();
+    }
+
+    private void navigateTo(Class<?> targetActivity) {
+        startActivity(new Intent(this, targetActivity));
+        finish();
     }
 }

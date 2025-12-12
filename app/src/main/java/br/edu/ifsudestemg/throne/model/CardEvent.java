@@ -1,0 +1,47 @@
+package br.edu.ifsudestemg.throne.model;
+
+public class CardEvent {
+
+    private final String title;
+    private final String description;
+
+    private final String choiceYes;
+    private final String choiceNo;
+
+    private final int effectPeopleYes, effectArmyYes, effectWealthYes, effectFaithYes;
+    private final int effectPeopleNo, effectArmyNo, effectWealthNo, effectFaithNo;
+    public CardEvent(String title, String description,
+                     String choiceYes, String choiceNo,
+                     int effectPeopleYes, int effectArmyYes, int effectWealthYes, int effectFaithYes,
+                     int effectPeopleNo, int effectArmyNo, int effectWealthNo, int effectFaithNo) {
+
+        this.title = title;
+        this.description = description;
+        this.choiceYes = choiceYes;
+        this.choiceNo = choiceNo;
+
+        this.effectPeopleYes = effectPeopleYes;
+        this.effectArmyYes = effectArmyYes;
+        this.effectWealthYes = effectWealthYes;
+        this.effectFaithYes = effectFaithYes;
+        this.effectPeopleNo = effectPeopleNo;
+        this.effectArmyNo = effectArmyNo;
+        this.effectWealthNo = effectWealthNo;
+        this.effectFaithNo = effectFaithNo;
+    }
+
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+
+    public String getChoiceYes() { return choiceYes; }
+    public String getChoiceNo() { return choiceNo; }
+    public int getPeopleYes() { return effectPeopleYes; }
+    public int getArmyYes() { return effectArmyYes; }
+    public int getWealthYes() { return effectWealthYes; }
+    public int getFaithYes() { return effectFaithYes; }
+
+    public int getPeopleNo() { return effectPeopleNo; }
+    public int getArmyNo() { return effectArmyNo; }
+    public int getWealthNo() { return effectWealthNo; }
+    public int getFaithNo() { return effectFaithNo; }
+}

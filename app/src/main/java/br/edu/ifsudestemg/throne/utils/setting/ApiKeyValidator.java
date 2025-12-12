@@ -1,4 +1,4 @@
-package br.edu.ifsudestemg.throne.utils;
+package br.edu.ifsudestemg.throne.utils.setting;
 
 import android.os.Handler;
 import android.os.Looper;

@@ -1,4 +1,4 @@
-package br.edu.ifsudestemg.throne.utils;
+package br.edu.ifsudestemg.throne.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +9,11 @@ import androidx.security.crypto.MasterKey;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
+/**
+ * Gerencia armazenamento seguro local.
+ * - Chave da API
+ * - Dados simples de login
+ */
 public class SecurePrefs {
 
     private static final String FILE_NAME = "secure_prefs";
@@ -17,7 +22,6 @@ public class SecurePrefs {
     private final SharedPreferences prefs;
 
     public SecurePrefs(Context context) throws GeneralSecurityException, IOException {
-
         MasterKey masterKey = new MasterKey.Builder(context)
                 .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                 .build();

@@ -12,9 +12,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 public class PercentageIconView extends View {
 
     private Drawable emptyIcon;
-
     private Drawable fullIcon;
-
     private float percentage = 0f;
 
     public PercentageIconView(Context context) {
@@ -36,6 +34,10 @@ public class PercentageIconView extends View {
         invalidate();
     }
 
+    public float getPercentage() {
+        return percentage;
+    }
+
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
@@ -46,11 +48,9 @@ public class PercentageIconView extends View {
         emptyIcon.draw(canvas);
 
         if (fullIcon != null && percentage > 0) {
-            int fullHeight = getHeight();
-            int clipHeight = (int) (fullHeight * percentage);
-
+            int clipWidth = (int) (getWidth() * percentage);
             canvas.save();
-            canvas.clipRect(0, fullHeight - clipHeight, getWidth(), fullHeight);
+            canvas.clipRect(0, 0, clipWidth, getHeight());
             fullIcon.setBounds(0, 0, getWidth(), getHeight());
             fullIcon.draw(canvas);
             canvas.restore();

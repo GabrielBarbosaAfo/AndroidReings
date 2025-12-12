@@ -59,4 +59,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 
     implementation("androidx.security:security-crypto:1.1.0-alpha03")
+
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 }

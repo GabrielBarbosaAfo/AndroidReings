@@ -26,9 +26,9 @@
         <ImageView
             android:id="@+id/frame_middle"
             android:contentDescription="@string/frame_topo"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="match_parent"
-            android:src="@drawable/frame_game"
+            android:src="@drawable/bg_frame_game"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,28 +40,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="50dp" />
+            app:layout_constraintGuide_begin="30dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="50dp" />
+            app:layout_constraintGuide_end="30dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="50dp" />
+            app:layout_constraintGuide_begin="30dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="50dp" />
+            app:layout_constraintGuide_end="30dp" />
 
         <LinearLayout
             android:id="@+id/frame_title"
@@ -70,7 +70,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:background="@drawable/frame_topo"
+            android:background="@drawable/bg_frame_game_middle"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toTopOf="@id/guide_top">
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#1d0f03"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:fontFamily="serif"
                 android:gravity="center" />
         </LinearLayout>
@@ -89,12 +89,12 @@
             android:id="@+id/frame_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/frame_game"
+            android:background="@drawable/bg_frame_game"
             android:padding="12dp"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toBottomOf="@id/frame_title"
-            app:layout_constraintHeight_percent="0.24">
+            app:layout_constraintHeight_percent="0.32">
 
             <ImageView
                 android:id="@+id/card_image"
@@ -109,9 +109,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="14dp"
-            android:background="@drawable/frame_topo"
+            android:gravity="start"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingTop="40dp"
+            android:background="@drawable/bg_frame_game_middle"
             app:layout_constraintStart_toStartOf="@id/guide_left"
             app:layout_constraintEnd_toEndOf="@id/guide_right"
             app:layout_constraintTop_toBottomOf="@id/frame_image"
@@ -122,9 +124,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#1d0f03"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:fontFamily="serif"
-                android:gravity="center"
+                android:gravity="start"
                 android:lineSpacingExtra="4dp" />
         </LinearLayout>
 
