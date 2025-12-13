@@ -82,7 +82,18 @@
                 android:textColor="#1d0f03"
                 android:textSize="15sp"
                 android:fontFamily="serif"
-                android:gravity="center" />
+                android:gravity="center"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/card_name_drag_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#1d0f03"
+                android:textSize="15sp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <FrameLayout

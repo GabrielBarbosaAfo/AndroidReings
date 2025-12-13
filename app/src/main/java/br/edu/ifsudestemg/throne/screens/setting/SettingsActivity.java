@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.ifsudestemg.throne.R;
-import br.edu.ifsudestemg.throne.screens.ContextActivity;
+import br.edu.ifsudestemg.throne.screens.game.ContextActivity;
 import br.edu.ifsudestemg.throne.utils.design.TopBanner;
 import br.edu.ifsudestemg.throne.utils.setting.ApiKeyValidator;
 import br.edu.ifsudestemg.throne.utils.design.FeedbackUtils;

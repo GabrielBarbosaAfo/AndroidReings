@@ -8,20 +8,16 @@ import androidx.security.crypto.MasterKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-
-/**
- * Gerencia armazenamento seguro local.
- * - Chave da API
- * - Dados simples de login
- */
 public class SecurePrefs {
 
     private static final String FILE_NAME = "secure_prefs";
+
     private static final String KEY_API = "gemini_api_key";
 
     private final SharedPreferences prefs;
 
     public SecurePrefs(Context context) throws GeneralSecurityException, IOException {
+
         MasterKey masterKey = new MasterKey.Builder(context)
                 .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                 .build();
@@ -41,10 +37,6 @@ public class SecurePrefs {
 
     public String getApiKey() {
         return prefs.getString(KEY_API, null);
-    }
-
-    public void removeApiKey() {
-        prefs.edit().remove(KEY_API).apply();
     }
 
     public boolean hasApiKey() {

@@ -31,20 +31,20 @@ public class MenuOverlayController {
 
         Activity activity = (Activity) rootView.getContext();
 
-        overlayMenu  = rootView.findViewById(R.id.overlay_menu);
+        overlayMenu = rootView.findViewById(R.id.overlay_menu);
 
-        pageScore    = rootView.findViewById(R.id.page_score);
+        pageScore = rootView.findViewById(R.id.page_score);
         pageSettings = rootView.findViewById(R.id.page_settings);
 
-        tabScore     = rootView.findViewById(R.id.tab_score);
-        tabSettings  = rootView.findViewById(R.id.tab_settings);
+        tabScore = rootView.findViewById(R.id.tab_score);
+        tabSettings = rootView.findViewById(R.id.tab_settings);
 
-        iconScore    = rootView.findViewById(R.id.icon_score);
+        iconScore = rootView.findViewById(R.id.icon_score);
         iconSettings = rootView.findViewById(R.id.icon_settings);
 
         btnCloseMenu = rootView.findViewById(R.id.btn_close_menu);
 
-        scoreBar     = rootView.findViewById(R.id.score_bar);
+        scoreBar = rootView.findViewById(R.id.score_bar);
 
         new SettingsPageController(activity, pageSettings);
         new ScorePageController(pageScore);
@@ -53,7 +53,6 @@ public class MenuOverlayController {
 
         setActiveTab(true);
     }
-
     private void setupListeners() {
         btnCloseMenu.setOnClickListener(v -> hide());
         tabScore.setOnClickListener(v -> showScorePage());

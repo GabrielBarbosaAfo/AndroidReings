@@ -23,13 +23,13 @@
             android:name=".screens.setting.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.GameActivityNative"
+            android:name=".screens.game.GameActivityNative"
             android:exported="false" />
         <activity
             android:name=".GameActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.ContextActivity"
+            android:name=".screens.game.ContextActivity"
             android:exported="false" />
 
         <activity

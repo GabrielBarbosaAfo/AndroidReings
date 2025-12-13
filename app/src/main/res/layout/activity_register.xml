@@ -195,7 +195,7 @@
     </LinearLayout>
 
     <include
-        layout="@layout/cp_layout_top_banner"
+        layout="@layout/cp_top_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"

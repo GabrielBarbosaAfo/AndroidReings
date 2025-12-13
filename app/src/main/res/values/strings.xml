@@ -11,7 +11,6 @@
 
     <string name="card_back">Card fundo</string>
 
-
     <string name="frame_topo">Frame mais claro para titulo</string>
     <string name="frame_base">Frame maior para os componentes</string>
     <string name="frame_game">Frame cor escura para imagens</string>
@@ -37,6 +36,8 @@
     <string name="register_password">Senha</string>
     <string name="register_password_ex">******</string>
     <string name="register_btn_enter">Alistar-se</string>
+    <string name="register_processing">Alistando-se …</string>
+
 
     <string name="title_setting">Configuração</string>
     <string name="key_gemini">Chave da API do Gemini</string>
@@ -67,7 +68,6 @@
     <string name="menu_title_settings">Configurações</string>
 
     <string name="menu_content_score">(Conteúdo do placar)</string>
-    <string name="menu_content_settings">(Configurações do jogo)</string>
 
     <string name="wealth_icon">Icone economia</string>
     <string name="people_icon">Icone população</string>
@@ -79,5 +79,11 @@
     <string name="config">Configurações</string>
     <string name="api_key_change">Trocar chave da API</string>
     <string name="logout">Sair da conta</string>
+
+    <string name="invalid_email">E-mail inválido</string>
+    <string name="password_min_length">A senha deve ter no mínimo 6 caracteres</string>
+    <string name="generic_error">Erro inesperado. Tente novamente.</string>
+
+    <string name="loading_creating_kingdom">Criando seu reino…</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package br.edu.ifsudestemg.throne.utils;
+package br.edu.ifsudestemg.throne.utils.design;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +37,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.item_card, parent, false);
+                .inflate(R.layout.cp_item_card, parent, false);
 
         return new ViewHolder(view);
     }
@@ -48,7 +48,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         CardData card = cards.get(position);
 
         holder.cardName.setText(card.getTitle());
-        holder.cardText.setText(card.getText());
+        holder.cardText.setText(card.getDescription());
         holder.cardImage.setImageResource(card.getImageRes());
 
         if (revealedIndices.contains(position)) {
@@ -72,6 +72,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return cards.size();
+    }
+
+    public CardData getCardData(int position) {
+        if (position >= 0 && position < cards.size()) {
+            return cards.get(position);
+        }
+        return null;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

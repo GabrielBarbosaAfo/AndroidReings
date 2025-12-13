@@ -51,7 +51,7 @@ public class CardAnimator {
             return;
         }
 
-        View card = View.inflate(context, R.layout.layout_item_card_back, null);
+        View card = View.inflate(context, R.layout.cp_item_card_back, null);
         animationLayer.addView(card);
         fakeCardsList.add(card);
 

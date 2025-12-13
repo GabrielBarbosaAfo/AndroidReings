@@ -187,6 +187,6 @@
     </LinearLayout>
 
     <include
-        layout="@layout/cp_menu_overlay" />
+        layout="@layout/cp_menu_setting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

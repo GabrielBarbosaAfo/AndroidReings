@@ -2,97 +2,98 @@ package br.edu.ifsudestemg.throne.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.edu.ifsudestemg.throne.model.CardEvent;
-import br.edu.ifsudestemg.throne.model.GameContext;
-import br.edu.ifsudestemg.throne.model.GameState;
+import com.google.gson.GsonBuilder;
+import br.edu.ifsudestemg.throne.model.GameProgress;
+import br.edu.ifsudestemg.throne.model.NarrativeTree;
+import br.edu.ifsudestemg.throne.narrative.KingdomState;
 
 public class GameStorage {
 
-    private static final String PREF_NAME = "game_storage";
-
-    private static final String KEY_CONTEXT = "game_context";
-    private static final String KEY_STATE = "game_state";
-    private static final String KEY_BUFFER = "game_buffer";
-    private static final String KEY_CURRENT_INDEX = "current_index";
+    private static final String PREF = "throne_game_v1";
 
     private final SharedPreferences prefs;
-    private final Gson gson = new Gson();
 
-    public GameStorage(Context context) {
-        prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+    private final Gson gson;
+
+    public GameStorage(Context ctx) {
+        this.prefs = ctx.getSharedPreferences(PREF, Context.MODE_PRIVATE);
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    public void saveContext(GameContext ctx) {
-        prefs.edit().putString(KEY_CONTEXT, gson.toJson(ctx)).apply();
+    public void saveUserContext(String ctx) {
+        prefs.edit().putString("ctx", ctx).apply();
     }
 
-    public GameContext loadContext() {
-        String json = prefs.getString(KEY_CONTEXT, null);
-        if (json == null) return null;
+    public String loadUserContext() { return prefs.getString("ctx", null); }
+
+    public void saveKingdomState(KingdomState state) {
+        prefs.edit().putString("state", gson.toJson(state)).apply();
+    }
+
+    public KingdomState loadKingdomState() {
+
+        String json = prefs.getString("state", null);
+
+        if (json == null)
+            return new KingdomState(50, 50, 50, 50);
 
         try {
-            return gson.fromJson(json, GameContext.class);
-        } catch (JsonSyntaxException e) {
+            KingdomStateProxy p = gson.fromJson(json, KingdomStateProxy.class);
+            return new KingdomState(p.wealth, p.people, p.army, p.faith);
+        } catch (Exception e) {
+            return new KingdomState(50, 50, 50, 50);
+        }
+    }
+
+    public void saveProgress(GameProgress p) {
+        prefs.edit().putString("prog", gson.toJson(p)).apply();
+    }
+
+    public GameProgress loadProgress() {
+        String json = prefs.getString("prog", null);
+
+        if (json == null)
+            return new GameProgress();
+
+        try {
+            return gson.fromJson(json, GameProgress.class);
+        } catch (Exception e) {
+            return new GameProgress();
+        }
+    }
+
+    public void saveTree(NarrativeTree tree) {
+        prefs.edit().putString("tree", gson.toJson(tree)).apply();
+    }
+
+    public NarrativeTree loadTree() {
+        String json = prefs.getString("tree", null);
+        if (json == null) return null;
+        try {
+            return gson.fromJson(json, NarrativeTree.class);
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public void saveState(GameState state) {
-        prefs.edit().putString(KEY_STATE, gson.toJson(state)).apply();
+    public void savePreviousTwist(String twist) {
+        prefs.edit().putString("twist", twist).apply();
     }
 
-    public GameState loadState() {
-        String json = prefs.getString(KEY_STATE, null);
-        if (json == null) return null;
-
-        try {
-            GameState state = gson.fromJson(json, GameState.class);
-
-            if (state == null) return new GameState();
-            return state;
-
-        } catch (JsonSyntaxException e) {
-            return new GameState();
-        }
+    public String loadPreviousTwist() {
+        return prefs.getString("twist", null);
     }
 
-    public void saveBuffer(List<CardEvent> buffer) {
-        prefs.edit().putString(KEY_BUFFER, gson.toJson(buffer)).apply();
+    public boolean hasActiveGame() {
+        return loadUserContext() != null && loadTree() != null;
     }
 
-    public List<CardEvent> loadBuffer() {
-        String json = prefs.getString(KEY_BUFFER, null);
-        if (json == null) return new ArrayList<>();
-
-        try {
-            Type type = new TypeToken<List<CardEvent>>(){}.getType();
-            List<CardEvent> list = gson.fromJson(json, type);
-
-            return (list != null) ? list : new ArrayList<>();
-
-        } catch (JsonSyntaxException e) {
-            return new ArrayList<>();
-        }
-    }
-
-    public void saveCurrentIndex(int index) {
-        prefs.edit().putInt(KEY_CURRENT_INDEX, index).apply();
-    }
-
-    public int loadCurrentIndex() {
-        return prefs.getInt(KEY_CURRENT_INDEX, 0);
-    }
-
-    public void reset() {
+    public void clear() {
         prefs.edit().clear().apply();
+    }
+
+    private static class KingdomStateProxy {
+        int wealth, people, army, faith;
     }
 }

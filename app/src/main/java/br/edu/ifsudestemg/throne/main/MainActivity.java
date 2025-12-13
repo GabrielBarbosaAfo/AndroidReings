@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import br.edu.ifsudestemg.throne.screens.ContextActivity;
+import br.edu.ifsudestemg.throne.screens.game.ContextActivity;
 import br.edu.ifsudestemg.throne.screens.setting.LoginActivity;
 import br.edu.ifsudestemg.throne.screens.setting.SettingsActivity;
 import br.edu.ifsudestemg.throne.data.SecurePrefs;
@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+
         mAuth = FirebaseAuth.getInstance();
+
         try {
             securePrefs = new SecurePrefs(this);
         } catch (Exception e) {
