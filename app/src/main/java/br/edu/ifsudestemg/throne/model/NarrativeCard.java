@@ -1,5 +1,7 @@
 package br.edu.ifsudestemg.throne.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class NarrativeCard {
 
     private String title;
@@ -10,12 +12,16 @@ public class NarrativeCard {
 
     private String noResponse;
 
+    @SerializedName("riqueza")
     private int wealth;
 
+    @SerializedName("povo")
     private int people;
 
+    @SerializedName("exercito")
     private int army;
 
+    @SerializedName("fe")
     private int faith;
 
     public NarrativeCard() {}

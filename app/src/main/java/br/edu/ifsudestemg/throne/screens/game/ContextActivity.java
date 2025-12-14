@@ -92,7 +92,7 @@ public class ContextActivity extends AppCompatActivity {
     }
 
     private void startGameWithNewContext(String context) {
-        // Verifica se há chave de API
+
         if (!securePrefs.hasApiKey()) {
             Toast.makeText(this, "Chave da IA não configurada!", Toast.LENGTH_LONG).show();
             return;
@@ -113,8 +113,8 @@ public class ContextActivity extends AppCompatActivity {
 
             new Handler(Looper.getMainLooper()).post(() -> {
                 showLoading(false);
+
                 if (success) {
-                    // Árvore pronta! Vai para o jogo
                     storage.saveUserContext(context);
                     Intent intent = new Intent(this, GameActivityNative.class);
                     intent.putExtra("USER_CONTEXT", context);

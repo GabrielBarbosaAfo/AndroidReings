@@ -15,23 +15,28 @@ import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsudestemg.throne.R;
-import br.edu.ifsudestemg.throne.data.CardLibrary;
 import br.edu.ifsudestemg.throne.data.GameStorage;
 import br.edu.ifsudestemg.throne.model.CardData;
-import br.edu.ifsudestemg.throne.utils.design.CardAdapter;
+import br.edu.ifsudestemg.throne.model.NarrativeCard;
+import br.edu.ifsudestemg.throne.model.NarrativeTree;
 import br.edu.ifsudestemg.throne.utils.controllers.AttributeBarController;
 import br.edu.ifsudestemg.throne.utils.controllers.GameMenuController;
+import br.edu.ifsudestemg.throne.utils.design.CardAdapter;
 import br.edu.ifsudestemg.throne.utils.design.CardAnimator;
 import br.edu.ifsudestemg.throne.utils.design.FeedbackUtils;
 
 public class GameActivityNative extends AppCompatActivity {
 
     private FrameLayout animationLayer;
+
     private CardStackView cardStackView;
+
     private CardAdapter cardAdapter;
+
     private CardStackLayoutManager layoutManager;
 
     private AttributeBarController attributeController;
@@ -40,14 +45,16 @@ public class GameActivityNative extends AppCompatActivity {
 
     private Direction lastDirection = null;
 
+    private GameStorage storage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_native);
 
-        if (!validateUserContext())
-            return;
+        storage = new GameStorage(this);
+
+        if (!validateUserContext()) return;
 
         initComponents();
         startIntroAnimation();
@@ -59,31 +66,26 @@ public class GameActivityNative extends AppCompatActivity {
 
         View root = findViewById(android.R.id.content);
         menuConfigController = new GameMenuController(root);
-
         attributeController = new AttributeBarController(root);
         attributeController.setupIcons();
     }
 
     private boolean validateUserContext() {
-
         String userContext = getIntent().getStringExtra("USER_CONTEXT");
-
         if (userContext == null || userContext.trim().isEmpty()) {
             finish();
             return false;
         }
 
-        GameStorage storage = new GameStorage(this);
-
-        if (storage.loadUserContext() == null)
+        if (storage.loadUserContext() == null) {
             storage.saveUserContext(userContext);
+        }
 
         return true;
     }
 
     private void startIntroAnimation() {
         CardAnimator animator = new CardAnimator(animationLayer, this, 4);
-
         animator.startAnimation(() -> {
             showAttributeBar();
             menuConfigController.showMenu();
@@ -97,29 +99,31 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void showRealGame() {
-
         cardStackView.setVisibility(View.VISIBLE);
 
-        List<CardData> cardList = CardLibrary.getGenericCards();
+        NarrativeTree tree = storage.loadTree();
+
+        if (tree == null || tree.getRoot() == null) {
+            finish();
+            return;
+        }
+
+        List<CardData> cardList = new ArrayList<>();
+        cardList.add(convertToCardData(tree.getRoot(), R.drawable.bg_back_card));
+
         cardAdapter = new CardAdapter(cardList);
 
         CardStackListener listener = new CardStackListener() {
 
             @Override
             public void onCardDragging(Direction direction, float ratio) {
-
                 int topPos = layoutManager.getTopPosition();
-
                 RecyclerView.ViewHolder vh = cardStackView.findViewHolderForAdapterPosition(topPos);
-
-                if (vh == null || cardAdapter == null)
-                    return;
+                if (vh == null || cardAdapter == null) return;
 
                 TextView titleView = vh.itemView.findViewById(R.id.card_name);
                 CardData currentCard = cardAdapter.getCardData(topPos);
-
-                if (currentCard == null)
-                    return;
+                if (currentCard == null) return;
 
                 if (Math.abs(ratio) < 0.05f) {
                     titleView.setText(currentCard.getTitle());
@@ -186,5 +190,15 @@ public class GameActivityNative extends AppCompatActivity {
 
         cardStackView.setLayoutManager(layoutManager);
         cardStackView.setAdapter(cardAdapter);
+    }
+
+    private CardData convertToCardData(NarrativeCard card, int imageRes) {
+        return new CardData(
+                card.getTitle(),
+                card.getDescription(),
+                imageRes,
+                card.getYesResponse(),
+                card.getNoResponse()
+        );
     }
 }

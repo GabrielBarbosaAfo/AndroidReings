@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -22,13 +23,16 @@ public class GeminiAIClient {
     public GeminiAIClient(@NonNull String apiKey) {
         this.apiKey = apiKey;
         this.client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
                 .build();
     }
 
     public String generateText(@NonNull String prompt) throws IOException, JSONException {
 
-        String modelId = "gemini-2.0-flash";
+        String modelId = "gemini-2.5-flash";
         String apiUrl = "https://generativelanguage.googleapis.com/v1/models/"
                 + modelId + ":generateContent?key=" + apiKey;
 
@@ -77,7 +81,7 @@ public class GeminiAIClient {
 
         JSONObject generationConfig = new JSONObject();
         generationConfig.put("temperature", 0.5);
-        generationConfig.put("maxOutputTokens", 600);
+        generationConfig.put("maxOutputTokens", 5000);
 
         JSONObject requestBodyJson = new JSONObject();
         requestBodyJson.put("contents", contentsArray);
