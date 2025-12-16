@@ -1,0 +1,39 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintAccidentalOctal" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAdapterViewChildren" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAnnotateVersionCheck" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAppBundleLocaleChanges" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAppCompatCustomView" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAppIndexingService" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAppLinkSplitToWebAndCustom" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintAppLinkWarning" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintBatteryLife" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintBottomAppBar" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintBrokenIterator" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintCoarseFineLocation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintCoreLibDesugaringV1" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintCustomSplashScreen" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintDuplicateActivity" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintEllipsizeMaxLines" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintEmptySuperCall" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintFindViewByIdCast" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintMergeMarker" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintNewApi" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintNonConstantResourceId" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintNonResizeableActivity" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintRequiresWindowSdk" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintScopedStorage" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintSelectedPhotoAccess" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintSetAndClearCommunicationDevice" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintTypos" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintUnusedAttribute" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AndroidLintWatchFaceForAndroidX" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
+      <option name="processCode" value="true" />
+      <option name="processLiterals" value="true" />
+      <option name="processComments" value="true" />
+    </inspection_tool>
+  </profile>
+</component>

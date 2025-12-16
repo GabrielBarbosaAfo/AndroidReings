@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/twist_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_medieval"
+    android:padding="24dp"
+    android:textSize="18sp"
+    android:textColor="#EED8A6"
+    android:fontFamily="@font/cinzel"
+    android:gravity="center"
+    android:lineSpacingExtra="6dp"
+    android:clickable="true"
+    android:focusable="true" />

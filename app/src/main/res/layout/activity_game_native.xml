@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000">
+
+    <View
+        android:id="@+id/top_safe_margin"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/attributes_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#00000044"
+        android:paddingTop="12dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/top_safe_margin"
+        app:layout_constraintBottom_toTopOf="@id/card_stack_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Riqueza -->
+        <LinearLayout
+            android:id="@+id/layout_wealth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/layout_army"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="12dp">
+
+            <ImageView
+                android:id="@+id/icon_wealth"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:src="@drawable/atr_icon_economy"
+                android:contentDescription="@string/wealth_icon"
+                android:scaleType="fitCenter"/>
+
+            <br.edu.ifsudestemg.throne.views.PercentageIconView
+                android:id="@+id/progress_wealth"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Exercito -->
+        <LinearLayout
+            android:id="@+id/layout_army"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toEndOf="@id/layout_wealth"
+            app:layout_constraintEnd_toStartOf="@id/layout_people"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:id="@+id/icon_army"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:src="@drawable/atr_icon_army"
+                android:contentDescription="@string/army_icon"
+                android:scaleType="fitCenter"/>
+
+            <br.edu.ifsudestemg.throne.views.PercentageIconView
+                android:id="@+id/progress_army"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- População -->
+        <LinearLayout
+            android:id="@+id/layout_people"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toEndOf="@id/layout_army"
+            app:layout_constraintEnd_toStartOf="@id/layout_religion"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:id="@+id/icon_people"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:src="@drawable/atr_icon_population"
+                android:contentDescription="@string/people_icon"
+                android:scaleType="fitCenter"/>
+
+            <br.edu.ifsudestemg.throne.views.PercentageIconView
+                android:id="@+id/progress_people"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Religião -->
+        <LinearLayout
+            android:id="@+id/layout_religion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toEndOf="@id/layout_people"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="12dp">
+
+            <ImageView
+                android:id="@+id/icon_religion"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:src="@drawable/atr_icon_religion"
+                android:contentDescription="@string/religion_icon"
+                android:scaleType="fitCenter"/>
+
+            <br.edu.ifsudestemg.throne.views.PercentageIconView
+                android:id="@+id/progress_religion"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- CardStackView -->
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/card_stack_view"
+        android:layout_width="0dp"
+        android:layout_height="550dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/attributes_bar"
+        app:layout_constraintBottom_toTopOf="@id/score_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Camada de animação (sobreposta ao card) -->
+    <FrameLayout
+        android:id="@+id/animation_layer"
+        android:layout_width="0dp"
+        android:layout_height="550dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/attributes_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Placar inferior -->
+    <LinearLayout
+        android:id="@+id/score_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="#00000044"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/card_stack_view"
+        app:layout_constraintBottom_toTopOf="@id/bottom_safe_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="12dp">
+
+            <TextView
+                android:id="@+id/txt_player_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/default_player_name"
+                android:textColor="#D4A017"
+                android:textSize="12sp"
+                android:fontFamily="@font/cinzel"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/txt_reign_years"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reign_years"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:fontFamily="@font/cinzel"
+                android:layout_marginTop="2dp"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_open_menu"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_menu"
+            android:contentDescription="@string/open_menu"/>
+
+    </LinearLayout>
+
+    <!-- Margem de segurança inferior -->
+    <View
+        android:id="@+id/bottom_safe_margin"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toBottomOf="@id/score_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible" />
+
+    <!-- Menu suspenso (overlay) -->
+    <include layout="@layout/cp_menu_setting" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

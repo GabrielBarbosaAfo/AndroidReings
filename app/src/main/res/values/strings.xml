@@ -1,0 +1,101 @@
+<!-- res/values/strings.xml -->
+<resources>
+    <string name="app_name">ReignsIA</string>
+
+    <string name="btn_continue">Continuar</string>
+    <string name="title_context">Defina o Contexto</string>
+
+    <string name="input_context">Digite o contexto inicial do seu reino …</string>
+
+    <string name="start_game">Começar Jogo</string>
+
+    <string name="card_back">Card fundo</string>
+
+    <string name="frame_topo">Frame mais claro para titulo</string>
+    <string name="frame_base">Frame maior para os componentes</string>
+    <string name="frame_game">Frame cor escura para imagens</string>
+
+    <string name="app_title">ThroneSwipe AI</string>
+    <string name="login_name_user">Nome do usuário</string>
+    <string name="login_password">Senha</string>
+    <string name="login_register">Não tem conta? Registre-se</string>
+    <string name="login_or">ou</string>
+    <string name="login_btn_google_sign">Entrar com Google</string>
+
+    <string name="login_btn_enter">Entrar</string>
+    <string name="login_btn_enter_process">Entrando …</string>
+    <string name="login_btn_google_process">Conectando …</string>
+
+    <string name="register_title">Registro</string>
+    <string name="register_name_user_real">Nome Real</string>
+    <string name="register_name_user_real_ex">Ex: Arthur Pendragon</string>
+    <string name="register_name_user">Nome de usuário</string>
+    <string name="register_name_user_ex">Ex: rei_arthur</string>
+    <string name="register_email">Email</string>
+    <string name="register_email_ex">email@reino.com</string>
+    <string name="register_password">Senha</string>
+    <string name="register_password_ex">******</string>
+    <string name="register_btn_enter">Alistar-se</string>
+    <string name="register_processing">Alistando-se …</string>
+
+
+    <string name="title_setting">Configuração</string>
+    <string name="key_gemini">Chave da API do Gemini</string>
+    <string name="ic_continue">Icone continuar a inicialização</string>
+
+    <string name="msg_empty_key">"Por favor! Insira a chave de API"</string>
+    <string name="msg_invalid_key">Chave inválida</string>
+    <string name="msg_valid_key">Chave válida!</string>
+    <string name="msg_validating">Validando …</string>
+    <string name="btn_key_save">Salvar Chave</string>
+
+    <string name="empty_field">Por favor! Preencha os campos</string>
+    <string name="wrong_password">Senha incorreta</string>
+    <string name="user_not_found">Usuário não encontrado</string>
+    <string name="complete_register">Registro Completo</string>
+
+    <string name="msg_empty_context">Digite um contexto para iniciar o jogo</string>
+
+    <string name="dialog_title">Jogo encontrado</string>
+    <string name="dialog_message">Deseja continuar o jogo anterior?</string>
+    <string name="dialog_continue">Continuar</string>
+    <string name="dialog_new_game">Novo jogo</string>
+
+    <string name="open_menu">Abrir menu</string>
+    <string name="close_menu">Fechar menu</string>
+
+    <string name="menu_title_score">Placar</string>
+    <string name="menu_title_settings">Configurações</string>
+
+    <string name="menu_content_score">(Conteúdo do placar)</string>
+
+    <string name="wealth_icon">Icone economia</string>
+    <string name="people_icon">Icone população</string>
+    <string name="army_icon">Icone exercito</string>
+    <string name="religion_icon">Icone religião</string>
+
+    <string name="score">Placar Geral</string>
+
+    <string name="config">Configurações</string>
+    <string name="api_key_change">Trocar chave da API</string>
+    <string name="logout">Sair da conta</string>
+
+    <string name="invalid_email">E-mail inválido</string>
+    <string name="password_min_length">A senha deve ter no mínimo 6 caracteres</string>
+    <string name="generic_error">Erro inesperado. Tente novamente.</string>
+
+    <string name="loading_creating_kingdom">Criando seu reino…</string>
+
+    <string name="default_player_name">User default</string>
+
+    <string name="reign_start">Início do reinado</string>
+    <string name="reign_years">%d anos no trono</string>
+
+    <string name="end_reign">FIM DE REINADO</string>
+    <string name="game_over">Sair\ndo Jogo</string>
+    <string name="new_reign">Novo\nReinado</string>
+
+
+
+
+</resources>
