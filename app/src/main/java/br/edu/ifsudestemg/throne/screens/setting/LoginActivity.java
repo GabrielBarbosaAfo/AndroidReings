@@ -6,7 +6,11 @@ import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import br.edu.ifsudestemg.throne.R;
+import br.edu.ifsudestemg.throne.data.GameStorage;
 import br.edu.ifsudestemg.throne.utils.animations.TopBanner;
 import br.edu.ifsudestemg.throne.utils.setting.AuthManager;
 import br.edu.ifsudestemg.throne.utils.animations.FeedbackUtils;
@@ -78,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 auth.loginWithEmail(email, password, new AuthManager.AuthCallback() {
                     @Override
                     public void onSuccess() {
+                        saveFirebaseLogin();
                         saveLocalLogin();
                         navigateToSettings();
                     }
@@ -102,6 +107,20 @@ public class LoginActivity extends AppCompatActivity {
                 topBanner.show(error);
             }
         });
+    }
+
+    private void saveFirebaseLogin() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String username = usernameInput.getText().toString().trim();
+
+        if (user != null) {
+            String uid = user.getUid();
+            String name = user.getDisplayName();
+
+            GameStorage storage = new GameStorage(LoginActivity.this);
+            storage.initUser(uid, name != null ? name : username);
+        }
     }
 
     private void saveLocalLogin() {

@@ -41,6 +41,7 @@ import br.edu.ifsudestemg.throne.utils.animations.FeedbackUtils;
 import br.edu.ifsudestemg.throne.utils.controllers.AttributeBarController;
 import br.edu.ifsudestemg.throne.utils.controllers.CardAdapter;
 import br.edu.ifsudestemg.throne.utils.controllers.GameMenuController;
+import br.edu.ifsudestemg.throne.utils.setting.TwistState;
 import br.edu.ifsudestemg.throne.views.TwistDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,21 +72,37 @@ public class GameActivityNative extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_native);
 
         storage = new GameStorage(this);
 
-        if (!validateUserContext()) return;
+        if (!validateUserContext())
+            return;
 
         initComponents();
-        startIntroAnimation();
+        decideGameEntry();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         backgroundExecutor.shutdown();
+    }
+
+    private void decideGameEntry() {
+
+        if (!hasAnyTree()) {
+            generateInitialTreeAndStart();
+            return;
+        }
+
+        startIntroAnimation();
+    }
+
+    private boolean hasAnyTree() {
+        return storage.loadTree() != null || storage.loadNextTree() != null;
     }
 
     private boolean validateUserContext() {
@@ -101,6 +118,15 @@ public class GameActivityNative extends AppCompatActivity {
         animationLayer = findViewById(R.id.animation_layer);
         cardStackView = findViewById(R.id.card_stack_view);
         txtReignYears = findViewById(R.id.txt_reign_years);
+
+        TextView txtPlayerName = findViewById(R.id.txt_player_name);
+
+        String playerName = storage.getUserName();
+
+        if (playerName == null || playerName.trim().isEmpty())
+            playerName = getString(R.string.default_player_name);
+
+        txtPlayerName.setText(playerName);
 
         View root = findViewById(android.R.id.content);
         menuConfigController = new GameMenuController(root);
@@ -121,6 +147,7 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void showRealGame() {
+
         cardStackView.setVisibility(View.VISIBLE);
 
         NarrativeTree tree = storage.loadTree();
@@ -136,14 +163,22 @@ public class GameActivityNative extends AppCompatActivity {
         attributeController.updateValues(state);
 
         NarrativeCard card = getCardById(tree, progress.getCurrentCardId());
-        if (card == null) card = tree.getRoot();
+
+        if (card == null)
+            card = tree.getRoot();
 
         List<CardData> list = new ArrayList<>();
-        list.add(convertToCardData(card, R.drawable.bg_back_card));
 
         cardAdapter = new CardAdapter(list);
         setupCardStackListener();
         cardStackView.setAdapter(cardAdapter);
+
+        if (storage.isInTwist()) {
+            showTwistAndSwitchTree(tree);
+            return;
+        }
+
+        list.add(convertToCardData(card, R.drawable.bg_back_card));
     }
 
     private void updateReignDisplay(int years) {
@@ -232,6 +267,7 @@ public class GameActivityNative extends AppCompatActivity {
                 ((TextView) vh.itemView.findViewById(R.id.card_name)).setText(card.getTitle());
             }
         }
+
         lastDirection = null;
     }
 
@@ -271,9 +307,11 @@ public class GameActivityNative extends AppCompatActivity {
         storage.saveReignYears(reignYears);
         updateReignDisplay(reignYears);
 
-        if (count == MAX_DECISIONS_PER_CYCLE) {
+        if (count == MAX_DECISIONS_PER_CYCLE && !storage.isInTwist()) {
+            storage.saveTwistState(TwistState.PART_1);
             prepareNextTree();
             showTwistAndSwitchTree(tree);
+
         } else {
             loadNextCard(nextId);
         }
@@ -363,6 +401,9 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void showTwistPart1(NarrativeTree tree) {
+
+        storage.saveTwistState(TwistState.PART_1);
+
         TwistDialog.newInstance(
                 tree.getTwist().getPart1(),
                 () -> showTwistPart2(tree)
@@ -371,6 +412,9 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void showTwistPart2(NarrativeTree tree) {
+
+        storage.saveTwistState(TwistState.PART_2);
+
         TwistDialog.newInstance(
                 tree.getTwist().getPart2(),
                 () -> showTwistPart3(tree)
@@ -396,6 +440,20 @@ public class GameActivityNative extends AppCompatActivity {
         loadNextCard("root");
 
         isNextTreeGenerationRequested = false;
+        storage.saveTwistState(TwistState.NONE);
+    }
+
+    private void generateInitialTreeAndStart() {
+        new Thread(() -> {
+            boolean ok = generateTreeInternal();
+            mainHandler.post(() -> {
+                if (ok) startIntroAnimation();
+                else {
+                    Toast.makeText(this, "Erro ao gerar história", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            });
+        }).start();
     }
 
     private boolean generateTreeInternal() {
@@ -476,6 +534,7 @@ public class GameActivityNative extends AppCompatActivity {
                 c.getNoResponse()
         );
     }
+
     private void incrementScore() {
         String uid = FirebaseAuth.getInstance().getUid();
         if (uid != null) {
