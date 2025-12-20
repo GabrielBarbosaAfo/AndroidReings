@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mAuth.signOut();
-
         try {
             securePrefs = new SecurePrefs(this);
         } catch (Exception e) {
