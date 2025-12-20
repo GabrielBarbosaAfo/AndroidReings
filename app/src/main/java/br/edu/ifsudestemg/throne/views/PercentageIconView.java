@@ -2,6 +2,8 @@ package br.edu.ifsudestemg.throne.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -49,12 +51,26 @@ public class PercentageIconView extends View {
         emptyIcon.draw(canvas);
 
         if (fullIcon != null && percentage > 0) {
+
+            applyDangerColorIfNeeded(fullIcon);
+
             int clipWidth = (int) (getWidth() * percentage);
             canvas.save();
             canvas.clipRect(0, 0, clipWidth, getHeight());
             fullIcon.setBounds(0, 0, getWidth(), getHeight());
             fullIcon.draw(canvas);
             canvas.restore();
+        }
+    }
+
+    private void applyDangerColorIfNeeded(Drawable drawable) {
+
+        if (percentage <= 0.10f) {
+            drawable.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        } else if (percentage >= 0.90f) {
+            drawable.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        } else {
+            drawable.clearColorFilter();
         }
     }
 }
