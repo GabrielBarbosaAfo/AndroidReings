@@ -82,7 +82,7 @@ public class GeminiAIClient {
 
         JSONObject generationConfig = new JSONObject();
         generationConfig.put("temperature", 0.5);
-        generationConfig.put("maxOutputTokens", 5000);
+        generationConfig.put("maxOutputTokens", 6000);
 
         JSONObject requestBodyJson = new JSONObject();
         requestBodyJson.put("contents", contentsArray);

@@ -24,6 +24,8 @@ public class NarrativeCard {
     @SerializedName("fe")
     private int faith;
 
+    private String character;
+
     public NarrativeCard() {}
 
     public String getTitle() {
@@ -88,5 +90,13 @@ public class NarrativeCard {
 
     public void setFaith(int faith) {
         this.faith = faith;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
     }
 }

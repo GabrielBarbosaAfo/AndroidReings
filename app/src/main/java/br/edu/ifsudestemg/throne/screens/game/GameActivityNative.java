@@ -187,7 +187,7 @@ public class GameActivityNative extends AppCompatActivity {
         }
 
         MusicManager.play(this, R.raw.bg_game, true);
-        list.add(convertToCardData(card, R.drawable.bg_back_card));
+        list.add(convertToCardData(card, card.getCharacter()));
     }
 
     private void updateReignDisplay(int years) {
@@ -498,7 +498,7 @@ public class GameActivityNative extends AppCompatActivity {
         if (card == null) return;
 
         List<CardData> list = new ArrayList<>();
-        list.add(convertToCardData(card, R.drawable.bg_back_card));
+        list.add(convertToCardData(card, card.getCharacter()));
         cardAdapter.updateCards(list);
     }
 
@@ -538,11 +538,33 @@ public class GameActivityNative extends AppCompatActivity {
         return Math.max(0, Math.min(100, v));
     }
 
-    private CardData convertToCardData(NarrativeCard c, int img) {
+    private int getCardBackgroundForCharacter(String character) {
+        if (character == null) return R.drawable.bg_back_card;
+
+        switch (character.toUpperCase()) {
+            case "ISOLDE":
+                return R.drawable.bg_card_isolde;
+            case "MALACHI":
+                return R.drawable.bg_card_malachi;
+            case "ELOWEN":
+                return R.drawable.bg_card_elowen;
+            case "BORIN":
+                return R.drawable.bg_card_borin;
+            case "NYRA":
+                return R.drawable.bg_card_nyra;
+            default:
+                return R.drawable.bg_back_card;
+        }
+    }
+
+    private CardData convertToCardData(NarrativeCard c, String character) {
+
+        int background = getCardBackgroundForCharacter(character);
+
         return new CardData(
                 c.getTitle(),
                 c.getDescription(),
-                img,
+                background,
                 c.getYesResponse(),
                 c.getNoResponse()
         );
