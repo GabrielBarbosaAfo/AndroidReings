@@ -38,6 +38,7 @@ import br.edu.ifsudestemg.throne.narrative.NarrativeEngine;
 import br.edu.ifsudestemg.throne.narrative.NarrativeGenerationContext;
 import br.edu.ifsudestemg.throne.utils.animations.CardAnimator;
 import br.edu.ifsudestemg.throne.utils.animations.FeedbackUtils;
+import br.edu.ifsudestemg.throne.utils.animations.MusicManager;
 import br.edu.ifsudestemg.throne.utils.controllers.AttributeBarController;
 import br.edu.ifsudestemg.throne.utils.controllers.CardAdapter;
 import br.edu.ifsudestemg.throne.utils.controllers.GameMenuController;
@@ -54,18 +55,25 @@ public class GameActivityNative extends AppCompatActivity {
     private static final int MAX_DECISIONS_PER_CYCLE = 3;
 
     private FrameLayout animationLayer;
+
     private CardStackView cardStackView;
+
     private CardAdapter cardAdapter;
+
     private CardStackLayoutManager layoutManager;
 
     private AttributeBarController attributeController;
+
     private GameMenuController menuConfigController;
 
     private Direction lastDirection = null;
+
     private TextView txtReignYears;
+
     private GameStorage storage;
 
     private final ExecutorService backgroundExecutor = Executors.newSingleThreadExecutor();
+
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private volatile boolean isNextTreeGenerationRequested = false;
@@ -178,6 +186,7 @@ public class GameActivityNative extends AppCompatActivity {
             return;
         }
 
+        MusicManager.play(this, R.raw.bg_game, true);
         list.add(convertToCardData(card, R.drawable.bg_back_card));
     }
 
@@ -397,6 +406,7 @@ public class GameActivityNative extends AppCompatActivity {
 
 
     private void showTwistAndSwitchTree(NarrativeTree tree) {
+        MusicManager.switchTrack(this, R.raw.bg_pilot_twist, true);
         showTwistPart1(tree);
     }
 
@@ -429,6 +439,9 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void switchToNextTree() {
+
+        MusicManager.switchTrack(this, R.raw.bg_game, true);
+
         GameProgress currentProgress = storage.loadProgress();
         int currentDecisionCount = (currentProgress != null) ? currentProgress.getDecisionCount() : 0;
 
