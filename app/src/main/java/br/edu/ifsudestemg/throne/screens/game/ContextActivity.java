@@ -32,6 +32,7 @@ import br.edu.ifsudestemg.throne.narrative.NarrativeEngine;
 import br.edu.ifsudestemg.throne.narrative.NarrativeGenerationContext;
 import br.edu.ifsudestemg.throne.utils.animations.FeedbackUtils;
 import br.edu.ifsudestemg.throne.utils.animations.TopBanner;
+import br.edu.ifsudestemg.throne.utils.controllers.GameMenuController;
 
 public class ContextActivity extends AppCompatActivity {
 
@@ -44,6 +45,8 @@ public class ContextActivity extends AppCompatActivity {
 
     private ProgressBar loadingSpinner;
     private View loadingOverlay;
+
+    private GameMenuController menuConfigController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,9 @@ public class ContextActivity extends AppCompatActivity {
             Log.e(TAG, "Erro ao inicializar SecurePrefs", e);
             return;
         }
+
+        View root = findViewById(android.R.id.content);
+        menuConfigController = new GameMenuController(root);
 
         initViews();
 
@@ -216,5 +222,13 @@ public class ContextActivity extends AppCompatActivity {
         dialog.setOnShowListener(d -> showBackdrop.run());
         dialog.setOnDismissListener(d -> hideBackdrop.run());
         dialog.show();
+    }
+
+    public GameMenuController getMenuConfigController() {
+        return menuConfigController;
+    }
+
+    public void setMenuConfigController(GameMenuController menuConfigController) {
+        this.menuConfigController = menuConfigController;
     }
 }

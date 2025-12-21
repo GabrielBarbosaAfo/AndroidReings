@@ -95,6 +95,56 @@
     <string name="game_over">Sair\ndo Jogo</string>
     <string name="new_reign">Novo\nReinado</string>
 
+    <string name="menu_title_characters">Personagens</string>
+
+    <!-- Título e descrição da tela -->
+    <string name="title_characters_screen">Conheça o Jogo</string>
+
+    <string name="description_game">
+    Neste jogo, você assume o papel de um rei, tomando decisões críticas que moldam o destino do seu reino.
+    Cada personagem do seu conselho oferece perspectivas únicas, e suas escolhas podem levar à glória ou à ruína.
+    Para decidir, deslize para a direita ou esquerda, ponderando conselhos, riscos e consequências.\n\n
+
+    A cada partida, os anos em que você conseguiu permanecer no trono são registrados.
+    Esses anos se acumulam no seu histórico e são armazenados em nosso banco de dados no Firebase,
+    permitindo que você acompanhe seu progresso e compare seu desempenho com outros jogadores em um ranking global.
+    Quanto mais você jogar, maior será seu reinado total e sua posição entre os líderes do reino!
+    </string>
+
+    <string name="title_characters">Conselheiros  do Reino</string>
+
+    <!-- Personagem 1: Isolde -->
+    <string name="character_isolde_name">ISOLDE\nCapitã da Guarda</string>
+    <string name="character_isolde_description">
+        Honrada, direta. Fala com firmeza militar. Temas: exército, defesa, traição, lealdade.
+    </string>
+
+    <!-- Personagem 2: Malachi -->
+    <string name="character_malachi_name">MALACHI\nAlto Sacerdote</string>
+    <string name="character_malachi_description">
+        Fanático, dramático. Fala com linguagem sagrada. Temas: fé, profecias, sacrifício, blasfêmia.
+    </string>
+
+    <!-- Personagem 3: Elowen -->
+    <string name="character_elowen_name">ELOWEN\nCurandeira Sábia</string>
+    <string name="character_elowen_description">
+        Empática, realista. Fala com metáforas naturais. Temas: povo, pragas, colheitas, justiça social.
+    </string>
+
+    <!-- Personagem 4: Borin -->
+    <string name="character_borin_name">BORIN\nChanceler do Tesouro</string>
+    <string name="character_borin_description">
+        Astuto, calculista. Fala com precisão fria. Temas: riqueza, impostos, comércio, corrupção.
+    </string>
+
+    <!-- Personagem 5: Nyra -->
+    <string name="character_nyra_name">NYRA\nVidente do Observatório</string>
+    <string name="character_nyra_description">
+        Enigmática, visionária. Fala com presságios e urgência cósmica. Temas: destino, tempo, magia, colapso.
+    </string>
+
+
+
 
 
 

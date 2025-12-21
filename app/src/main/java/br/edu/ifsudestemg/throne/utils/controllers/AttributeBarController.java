@@ -30,6 +30,12 @@ public class AttributeBarController {
         bar.setVisibility(View.VISIBLE);
     }
 
+    public void hide() {
+        bar.setVisibility(View.INVISIBLE);
+    }
+
+
+
     public void updateValues(KingdomState state) {
         updateValue(R.id.progress_wealth, state.getWealth());
         updateValue(R.id.progress_people, state.getPeople());

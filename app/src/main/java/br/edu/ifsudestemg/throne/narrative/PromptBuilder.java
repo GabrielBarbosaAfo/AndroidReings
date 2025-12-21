@@ -41,6 +41,8 @@ public class PromptBuilder {
                         "   - **Respostas \"Sim\"/\"Não\": EXATAMENTE 2 ou 3 palavras**.\n" +
                         "   - **Efeitos**: inteiros **fora do intervalo [-9, +9]** → use **≤ -10 ou ≥ +10**.\n" +
                         "   - **Cada efeito deve ter lógica narrativa clara** (ex: \"Perdoar desertores → exército -20, povo +15\").\n" +
+                        "   - **Evite afetar todos os 4 atributos na mesma carta.** A maioria das cartas deve alterar **apenas 1 ou 2 atributos**.\n" +
+                        "   - **Apenas cartas de alta dramaticidade** (ex: colapso econômico, guerra santa, traição real) podem afetar **3 ou 4 atributos** — e mesmo assim, **nunca use valores pequenos em todos** (ex: riqueza +10, povo +10, exército -10, fé -10 é FRACO e genérico).\n" +
                         "   - Ao menos uma folha deve conter risco real de fim de jogo (atributo ≤0 ou ≥100).\n\n" +
 
                         "3. **PERSONAGEM POR CARTA**:\n" +

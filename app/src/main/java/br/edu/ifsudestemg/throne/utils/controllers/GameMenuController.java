@@ -23,5 +23,9 @@ public class GameMenuController {
     public void showMenu() {
         menuController.showScore();
     }
+
+    public void hideMenu() {
+        menuController.hideScore();
+    }
 }
 

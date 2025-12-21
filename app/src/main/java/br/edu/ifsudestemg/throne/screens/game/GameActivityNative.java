@@ -406,6 +406,8 @@ public class GameActivityNative extends AppCompatActivity {
 
 
     private void showTwistAndSwitchTree(NarrativeTree tree) {
+        attributeController.hide();
+        menuConfigController.hideMenu();
         MusicManager.switchTrack(this, R.raw.bg_pilot_twist, true);
         showTwistPart1(tree);
     }
@@ -441,6 +443,9 @@ public class GameActivityNative extends AppCompatActivity {
     private void switchToNextTree() {
 
         MusicManager.switchTrack(this, R.raw.bg_game, true);
+
+        attributeController.show();
+        menuConfigController.showMenu();
 
         GameProgress currentProgress = storage.loadProgress();
         int currentDecisionCount = (currentProgress != null) ? currentProgress.getDecisionCount() : 0;

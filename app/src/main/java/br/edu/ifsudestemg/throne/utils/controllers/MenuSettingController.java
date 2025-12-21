@@ -15,13 +15,19 @@ public class MenuSettingController {
     private final ConstraintLayout overlayMenu;
 
     private final View pageScore;
+
     private final View pageSettings;
+
+    private final View pageCharacters;
 
     private final LinearLayout tabScore;
     private final LinearLayout tabSettings;
 
+    private final LinearLayout tabCharacters;
+
     private final ImageView iconScore;
     private final ImageView iconSettings;
+    private final ImageView iconCharacters;
 
     private final ImageView btnCloseMenu;
 
@@ -35,12 +41,15 @@ public class MenuSettingController {
 
         pageScore = rootView.findViewById(R.id.page_score);
         pageSettings = rootView.findViewById(R.id.page_settings);
+        pageCharacters = rootView.findViewById(R.id.page_characters);
 
         tabScore = rootView.findViewById(R.id.tab_score);
         tabSettings = rootView.findViewById(R.id.tab_settings);
+        tabCharacters = rootView.findViewById(R.id.tab_characters);
 
         iconScore = rootView.findViewById(R.id.icon_score);
         iconSettings = rootView.findViewById(R.id.icon_settings);
+        iconCharacters = rootView.findViewById(R.id.icon_characters);
 
         btnCloseMenu = rootView.findViewById(R.id.btn_close_menu);
 
@@ -51,12 +60,14 @@ public class MenuSettingController {
 
         setupListeners();
 
-        setActiveTab(true);
+        setActiveTab("score");
     }
+
     private void setupListeners() {
         btnCloseMenu.setOnClickListener(v -> hide());
         tabScore.setOnClickListener(v -> showScorePage());
         tabSettings.setOnClickListener(v -> showSettingsPage());
+        tabCharacters.setOnClickListener(v -> showCharactersPage());
     }
 
     public void show() {
@@ -75,29 +86,46 @@ public class MenuSettingController {
             show();
     }
 
-    private void showScorePage() {
-        pageScore.setVisibility(View.VISIBLE);
+    private void showPage(View pageToShow) {
+
+        pageScore.setVisibility(View.GONE);
         pageSettings.setVisibility(View.GONE);
-        setActiveTab(true);
+        pageCharacters.setVisibility(View.GONE);
+
+        pageToShow.setVisibility(View.VISIBLE);
+    }
+
+
+    private void showScorePage() {
+        showPage(pageScore);
+        setActiveTab("score");
     }
 
     private void showSettingsPage() {
-        pageScore.setVisibility(View.GONE);
-        pageSettings.setVisibility(View.VISIBLE);
-        setActiveTab(false);
+        showPage(pageSettings);
+        setActiveTab("settings");
     }
 
-    private void setActiveTab(boolean scoreActive) {
-        if (scoreActive) {
-            iconScore.setColorFilter(0xFFE0C060);
-            iconSettings.setColorFilter(0xFF808080);
-        } else {
-            iconScore.setColorFilter(0xFF808080);
-            iconSettings.setColorFilter(0xFFE0C060);
-        }
+    private void showCharactersPage() {
+        showPage(pageCharacters);
+        setActiveTab("characters");
+    }
+
+    private void setActiveTab(String activeTab) {
+
+        int activeColor = 0xFFE0C060;
+        int inactiveColor = 0xFF808080;
+
+        iconScore.setColorFilter(activeTab.equals("score") ? activeColor : inactiveColor);
+        iconSettings.setColorFilter(activeTab.equals("settings") ? activeColor : inactiveColor);
+        iconCharacters.setColorFilter(activeTab.equals("characters") ? activeColor : inactiveColor);
     }
 
     public void showScore() {
         scoreBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideScore() {
+        scoreBar.setVisibility(View.INVISIBLE);
     }
 }
