@@ -72,6 +72,6 @@ Diferente de jogos tradicionais com histórias fixas, o **Throne** utiliza a API
 Projeto desenvolvido como parte da disciplina de Desenvolvimento Android no **IF Sudeste MG**.
 
 * **Gabriel Afonso Barbosa** - https://github.com/GabrielBarbosaAfo
-* **Sua Dupla** - https://github.com/michelleGomes85
+* **Michelle Cristina Gomes** - https://github.com/michelleGomes85
 
 ---
