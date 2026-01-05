@@ -195,7 +195,16 @@ public class GameStorage {
     }
 
     public void clear() {
-        prefs.edit().clear().apply();
+        prefs.edit()
+                .remove(KEY_USER_CONTEXT)
+                .remove(KEY_KINGDOM_STATE)
+                .remove(KEY_GAME_PROGRESS)
+                .remove(KEY_CURRENT_TREE)
+                .remove(KEY_NEXT_TREE)
+                .remove(KEY_PREVIOUS_TWIST)
+                .remove(KEY_REIGN_YEARS)
+                .remove(KEY_TWIST_STATE)
+                .apply();
     }
 
     private static class KingdomStateProxy {

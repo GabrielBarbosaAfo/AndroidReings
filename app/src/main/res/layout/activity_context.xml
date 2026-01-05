@@ -148,4 +148,21 @@
 
     </FrameLayout>
 
+    <ImageButton
+        android:id="@+id/btn_open_menu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_config"
+        android:contentDescription="@string/open_menu"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_frame"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_frame"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="35dp" />
+
+
+    <include layout="@layout/cp_menu_setting" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

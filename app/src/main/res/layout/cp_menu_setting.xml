@@ -80,6 +80,24 @@
 
                 </LinearLayout>
 
+                <!-- TAB CHARACTERS -->
+                <LinearLayout
+                    android:id="@+id/tab_characters"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="0dp">
+
+                    <ImageView
+                        android:id="@+id/icon_characters"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_characters"
+                        android:contentDescription="@string/menu_title_characters"/>
+                </LinearLayout>
+
                 <!-- TAB SETTINGS -->
                 <LinearLayout
                     android:id="@+id/tab_settings"
@@ -115,6 +133,11 @@
                 <include
                     android:id="@+id/page_settings"
                     layout="@layout/menu_page_settings"
+                    android:visibility="gone"/>
+
+                <include
+                    android:id="@+id/page_characters"
+                    layout="@layout/menu_page_characters"
                     android:visibility="gone"/>
 
             </FrameLayout>
