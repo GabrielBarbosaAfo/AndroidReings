@@ -98,6 +98,27 @@ public class AuthManager {
         void onError(String error);
     }
 
+    public void sendEmailVerification(AuthCallback callback) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null && !user.isEmailVerified()) {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            callback.onSuccess();
+                        } else {
+                            String errorMsg = task.getException() != null
+                                    ? task.getException().getMessage()
+                                    : "Falha ao enviar e-mail.";
+                            callback.onFail(errorMsg);
+                        }
+                    });
+        } else {
+            callback.onSuccess();
+        }
+    }
+
 
     public void logout() {
         auth.signOut();

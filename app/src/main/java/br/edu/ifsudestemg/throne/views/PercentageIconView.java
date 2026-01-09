@@ -11,11 +11,16 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 
+import java.util.Objects;
+
 public class PercentageIconView extends View {
 
     private Drawable emptyIcon;
     private Drawable fullIcon;
+
     private float percentage = 0f;
+
+    private int internalAlpha = 255;
 
     public PercentageIconView(Context context) {
         this(context, null);
@@ -26,12 +31,22 @@ public class PercentageIconView extends View {
     }
 
     public void setIcons(int emptyResId, int fullResId) {
-        emptyIcon = AppCompatResources.getDrawable(getContext(), emptyResId);
-        fullIcon = AppCompatResources.getDrawable(getContext(), fullResId);
+        emptyIcon = Objects.requireNonNull(AppCompatResources
+                        .getDrawable(getContext(), emptyResId))
+                .mutate();
+
+        fullIcon = Objects.requireNonNull(AppCompatResources
+                        .getDrawable(getContext(), fullResId))
+                .mutate();
+
         invalidate();
     }
 
     public void setPercentage(float percentage) {
+        if (percentage > 1.0f) {
+            percentage = percentage / 100f;
+        }
+
         this.percentage = Math.max(0f, Math.min(1f, percentage));
         invalidate();
     }
@@ -41,20 +56,30 @@ public class PercentageIconView extends View {
     }
 
     @Override
+    public void setAlpha(float alpha) {
+        internalAlpha = (int) (alpha * 255);
+        invalidate();
+    }
+
+    @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
-        if (emptyIcon == null)
-            return;
+        if (emptyIcon == null) return;
+
+        emptyIcon.setAlpha(internalAlpha);
+        if (fullIcon != null) {
+            fullIcon.setAlpha(internalAlpha);
+        }
 
         emptyIcon.setBounds(0, 0, getWidth(), getHeight());
         emptyIcon.draw(canvas);
 
-        if (fullIcon != null && percentage > 0) {
-
+        if (fullIcon != null && percentage > 0f) {
             applyDangerColorIfNeeded(fullIcon);
 
             int clipWidth = (int) (getWidth() * percentage);
+
             canvas.save();
             canvas.clipRect(0, 0, clipWidth, getHeight());
             fullIcon.setBounds(0, 0, getWidth(), getHeight());
@@ -64,11 +89,9 @@ public class PercentageIconView extends View {
     }
 
     private void applyDangerColorIfNeeded(Drawable drawable) {
-
-        if (percentage <= 0.10f) {
-            drawable.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        } else if (percentage >= 0.90f) {
-            drawable.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        if (percentage <= 0.10f || percentage >= 0.90f) {
+            int dangerColor = Color.parseColor("#7A1E1E");
+            drawable.setColorFilter(dangerColor, PorterDuff.Mode.SRC_IN);
         } else {
             drawable.clearColorFilter();
         }

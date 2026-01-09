@@ -1,7 +1,9 @@
 package br.edu.ifsudestemg.throne.utils.controllers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,13 +28,33 @@ public class SettingsPageController {
         setupActions();
     }
     private void setupActions() {
-
         btnChangeApiKey.setOnClickListener(v -> {
             Intent i = new Intent(activity, SettingsActivity.class);
             activity.startActivity(i);
         });
 
-        btnLogout.setOnClickListener(v -> {
+        btnLogout.setOnClickListener(v -> showLogoutConfirmationDialog());
+    }
+
+    private void showLogoutConfirmationDialog() {
+
+        View dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_confirm_logout, null);
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        if (dialog.getWindow() != null)
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        Button btnCancel = dialogView.findViewById(R.id.btn_cancel);
+        Button btnConfirm = dialogView.findViewById(R.id.btn_confirm_logout);
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirm.setOnClickListener(v -> {
+            dialog.dismiss();
 
             new AuthManager().logout();
             new GameStorage(activity).clear();
@@ -41,5 +63,7 @@ public class SettingsPageController {
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             activity.startActivity(i);
         });
+
+        dialog.show();
     }
 }

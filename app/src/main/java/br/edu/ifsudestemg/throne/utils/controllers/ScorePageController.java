@@ -29,6 +29,7 @@ public class ScorePageController {
     }
 
     private void startRealtimeRanking() {
+
         db.collection("users")
                 .orderBy("score", Query.Direction.DESCENDING)
                 .limit(20)
@@ -51,6 +52,7 @@ public class ScorePageController {
         LayoutInflater inflater = LayoutInflater.from(scoreListContainer.getContext());
 
         for (DocumentSnapshot doc : users) {
+
             View itemView = inflater.inflate(R.layout.item_ranking, scoreListContainer, false);
 
             TextView tvPos = itemView.findViewById(R.id.rank_pos);

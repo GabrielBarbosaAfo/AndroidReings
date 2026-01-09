@@ -1,7 +1,11 @@
 package br.edu.ifsudestemg.throne.utils.controllers;
 
 import android.view.View;
+
+import com.yuyakaido.android.cardstackview.Direction;
+
 import br.edu.ifsudestemg.throne.R;
+import br.edu.ifsudestemg.throne.model.NarrativeCard;
 import br.edu.ifsudestemg.throne.narrative.KingdomState;
 import br.edu.ifsudestemg.throne.utils.animations.AttributeBarAnimator;
 import br.edu.ifsudestemg.throne.views.PercentageIconView;
@@ -23,7 +27,10 @@ public class AttributeBarController {
 
     private void setupIcon(int id) {
         PercentageIconView view = bar.findViewById(id);
-        view.setIcons(R.drawable.ic_progress_empty, R.drawable.ic_progress_full);
+        view.setIcons(
+                R.drawable.ic_progress_empty,
+                R.drawable.ic_progress_full
+        );
     }
 
     public void show() {
@@ -33,8 +40,6 @@ public class AttributeBarController {
     public void hide() {
         bar.setVisibility(View.INVISIBLE);
     }
-
-
 
     public void updateValues(KingdomState state) {
         updateValue(R.id.progress_wealth, state.getWealth());
@@ -48,15 +53,43 @@ public class AttributeBarController {
         AttributeBarAnimator.animateTo(view, targetValue, 600);
     }
 
-    public void initializeValues(KingdomState state) {
-        setInstantValue(R.id.progress_wealth, state.getWealth());
-        setInstantValue(R.id.progress_people, state.getPeople());
-        setInstantValue(R.id.progress_army, state.getArmy());
-        setInstantValue(R.id.progress_religion, state.getFaith());
+    public void applyFocus(NarrativeCard card, Direction direction) {
+
+        if (card == null)
+            return;
+
+        if (direction == com.yuyakaido.android.cardstackview.Direction.Right) {
+            setFocus(R.id.layout_wealth, card.getYesWealth() == 0);
+            setFocus(R.id.layout_people, card.getYesPeople() == 0);
+            setFocus(R.id.layout_army, card.getYesArmy() == 0);
+            setFocus(R.id.layout_religion, card.getYesFaith() == 0);
+        }
+        else if (direction == com.yuyakaido.android.cardstackview.Direction.Left) {
+            setFocus(R.id.layout_wealth, card.getNoWealth() == 0);
+            setFocus(R.id.layout_people, card.getNoPeople() == 0);
+            setFocus(R.id.layout_army, card.getNoArmy() == 0);
+            setFocus(R.id.layout_religion, card.getNoFaith() == 0);
+        }
     }
 
-    private void setInstantValue(int viewId, int value) {
-        PercentageIconView view = bar.findViewById(viewId);
-        view.setPercentage(value);
+    public void resetFocus() {
+        setFocus(R.id.layout_wealth, true);
+        setFocus(R.id.layout_people, true);
+        setFocus(R.id.layout_army, true);
+        setFocus(R.id.layout_religion, true);
+    }
+
+    private void setFocus(int viewId, boolean isVisible) {
+
+        View view = bar.findViewById(viewId);
+        if (view != null) {
+            float targetAlpha = isVisible ? 1.0f : 0.20f;
+            if (view.getAlpha() != targetAlpha) {
+                view.animate()
+                        .alpha(targetAlpha)
+                        .setDuration(10)
+                        .start();
+            }
+        }
     }
 }

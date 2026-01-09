@@ -46,8 +46,6 @@ public class ContextActivity extends AppCompatActivity {
     private ProgressBar loadingSpinner;
     private View loadingOverlay;
 
-    private GameMenuController menuConfigController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -64,7 +62,7 @@ public class ContextActivity extends AppCompatActivity {
         }
 
         View root = findViewById(android.R.id.content);
-        menuConfigController = new GameMenuController(root);
+        new GameMenuController(root);
 
         initViews();
 
@@ -222,13 +220,5 @@ public class ContextActivity extends AppCompatActivity {
         dialog.setOnShowListener(d -> showBackdrop.run());
         dialog.setOnDismissListener(d -> hideBackdrop.run());
         dialog.show();
-    }
-
-    public GameMenuController getMenuConfigController() {
-        return menuConfigController;
-    }
-
-    public void setMenuConfigController(GameMenuController menuConfigController) {
-        this.menuConfigController = menuConfigController;
     }
 }

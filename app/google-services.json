@@ -1,26 +1,36 @@
 {
   "project_info": {
-    "project_number": "1036170783962",
-    "project_id": "reignsia-f6c81",
-    "storage_bucket": "reignsia-f6c81.firebasestorage.app"
+    "project_number": "888127070962",
+    "project_id": "throneswipeai-2a5ca",
+    "storage_bucket": "throneswipeai-2a5ca.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1036170783962:android:f7316661a8e756cb7609e3",
+        "mobilesdk_app_id": "1:888127070962:android:fa4f81c603a5770a5d666b",
         "android_client_info": {
           "package_name": "br.edu.ifsudestemg.throne"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "888127070962-psf9av2tpgqiel4qqeqagu2cga315bl0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwfPIEkmDuiyIWZQ5zXe92ML7jVy6fZuk"
+          "current_key": "AIzaSyCoYKCT4T_qPYVEQT1YhztXdU6v4HaALEI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888127070962-psf9av2tpgqiel4qqeqagu2cga315bl0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

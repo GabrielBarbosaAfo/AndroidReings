@@ -19,7 +19,6 @@ public class TwistDialog extends androidx.fragment.app.DialogFragment {
         setCancelable(false);
     }
 
-
     public interface OnTwistFinished {
         void onFinished();
     }

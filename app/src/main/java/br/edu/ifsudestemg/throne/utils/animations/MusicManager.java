@@ -15,7 +15,7 @@ public class MusicManager {
             return;
         }
 
-        stop();
+        stopMusic();
 
         player = MediaPlayer.create(context.getApplicationContext(), resId);
         player.setLooping(loop);
@@ -39,7 +39,7 @@ public class MusicManager {
         }
     }
 
-    public static void stop() {
+    public static void stopMusic() {
         if (player != null) {
             player.stop();
             player.release();
@@ -50,7 +50,7 @@ public class MusicManager {
     }
 
     public static void switchTrack(Context context, int resId, boolean loop) {
-        stop();
+        stopMusic();
         play(context, resId, loop);
     }
 }

@@ -2,6 +2,7 @@ package br.edu.ifsudestemg.throne.screens.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.ifsudestemg.throne.R;
 import br.edu.ifsudestemg.throne.screens.game.ContextActivity;
 import br.edu.ifsudestemg.throne.utils.animations.TopBanner;
+import br.edu.ifsudestemg.throne.utils.controllers.GameMenuController;
 import br.edu.ifsudestemg.throne.utils.setting.ApiKeyValidator;
 import br.edu.ifsudestemg.throne.utils.animations.FeedbackUtils;
 import br.edu.ifsudestemg.throne.data.SecurePrefs;
@@ -28,6 +30,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        View root = findViewById(android.R.id.content);
+        new GameMenuController(root);
         initializeViews();
         loadLocalApiKey();
         initTopBanner();

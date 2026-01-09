@@ -40,7 +40,7 @@
         android:id="@+id/bottom_frame"
         android:contentDescription="@string/frame_base"
         android:layout_width="330dp"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/bg_frame_base"
@@ -61,9 +61,29 @@
         app:layout_constraintStart_toStartOf="@id/bottom_frame"
         app:layout_constraintEnd_toEndOf="@id/bottom_frame">
 
+        <ImageButton
+            android:id="@+id/btn_open_menu"
+            android:layout_width="70dp"
+            android:layout_height="55dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/info_icon"
+            android:contentDescription="@string/open_menu"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mais informações?"
+            android:textColor="@color/link_color"
+            android:textSize="11sp"
+            android:fontFamily="serif"
+            android:layout_marginBottom="15dp"
+            android:alpha="0.8" />
+
         <EditText
             android:id="@+id/input_key"
-            android:layout_width="280dp"
+            android:layout_width="260dp"
             android:layout_height="48dp"
             android:hint="@string/key_gemini"
             android:padding="10dp"
@@ -103,6 +123,8 @@
             android:adjustViewBounds="true" />
 
     </LinearLayout>
+
+    <include layout="@layout/cp_menu_setting" />
 
     <include
         layout="@layout/cp_top_banner"

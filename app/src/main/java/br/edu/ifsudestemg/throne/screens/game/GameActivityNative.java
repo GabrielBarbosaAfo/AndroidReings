@@ -2,6 +2,7 @@ package br.edu.ifsudestemg.throne.screens.game;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -78,6 +79,10 @@ public class GameActivityNative extends AppCompatActivity {
 
     private volatile boolean isNextTreeGenerationRequested = false;
 
+    private NarrativeCard currentCardInPlay;
+
+    private boolean hasVibratedForCurrentDrag = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -96,6 +101,7 @@ public class GameActivityNative extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        MusicManager.stopMusic();
         backgroundExecutor.shutdown();
     }
 
@@ -175,6 +181,8 @@ public class GameActivityNative extends AppCompatActivity {
         if (card == null)
             card = tree.getRoot();
 
+        currentCardInPlay = card;
+
         List<CardData> list = new ArrayList<>();
 
         cardAdapter = new CardAdapter(list);
@@ -208,15 +216,18 @@ public class GameActivityNative extends AppCompatActivity {
             @Override
             public void onCardSwiped(Direction direction) {
                 handleCardSwiped(direction);
+                attributeController.resetFocus();
             }
 
             @Override
             public void onCardCanceled() {
+                attributeController.resetFocus();
                 restoreCardTitle();
             }
 
             @Override
             public void onCardRewound() {
+                attributeController.resetFocus();
                 restoreCardTitle();
             }
 
@@ -239,31 +250,45 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void handleCardDragging(Direction direction, float ratio) {
-
         int pos = layoutManager.getTopPosition();
         RecyclerView.ViewHolder vh = cardStackView.findViewHolderForAdapterPosition(pos);
-
-        if (vh == null || cardAdapter == null)
-            return;
+        if (vh == null || cardAdapter == null) return;
 
         TextView title = vh.itemView.findViewById(R.id.card_name);
-        CardData card = cardAdapter.getCardData(pos);
+        CardData cardData = cardAdapter.getCardData(pos);
+        if (cardData == null) return;
 
-        if (card == null)
-            return;
-
-        if (Math.abs(ratio) < 0.05f) {
-            title.setText(card.getTitle());
+        if (Math.abs(ratio) < 0.15f) {
+            title.setText(cardData.getTitle());
+            title.setTextColor(Color.parseColor("#2B1F17"));
+            title.setBackgroundResource(0);
+            title.setAlpha(1.0f);
+            attributeController.resetFocus();
             lastDirection = null;
+            hasVibratedForCurrentDrag = false;
             return;
         }
 
-        if (direction == Direction.Right && lastDirection != Direction.Right) {
-            title.setText(card.getYesResponse());
-            lastDirection = Direction.Right;
-        } else if (direction == Direction.Left && lastDirection != Direction.Left) {
-            title.setText(card.getNoResponse());
-            lastDirection = Direction.Left;
+        float alpha = Math.min((Math.abs(ratio) - 0.15f) * 3f, 1.0f);
+        title.setAlpha(alpha);
+
+        if (direction == Direction.Right) {
+            title.setText(cardData.getYesResponse());
+            title.setTextColor(Color.parseColor("#F5F5DC"));
+            title.setBackgroundResource(R.drawable.bg_decision_yes);
+        } else if (direction == Direction.Left) {
+            title.setText(cardData.getNoResponse());
+            title.setTextColor(Color.parseColor("#F5F5DC"));
+            title.setBackgroundResource(R.drawable.bg_decision_no);
+        }
+
+        if (currentCardInPlay != null) {
+            attributeController.applyFocus(currentCardInPlay, direction);
+        }
+
+        if (!hasVibratedForCurrentDrag) {
+            FeedbackUtils.playTickFeedback(this);
+            hasVibratedForCurrentDrag = true;
         }
     }
 
@@ -273,11 +298,15 @@ public class GameActivityNative extends AppCompatActivity {
         if (vh != null && cardAdapter != null) {
             CardData card = cardAdapter.getCardData(pos);
             if (card != null) {
-                ((TextView) vh.itemView.findViewById(R.id.card_name)).setText(card.getTitle());
+                TextView title = vh.itemView.findViewById(R.id.card_name);
+                title.setText(card.getTitle());
+                title.setTextColor(Color.parseColor("#2B1F17"));
+                title.setBackgroundResource(0);
+                title.setAlpha(1.0f);
             }
         }
-
         lastDirection = null;
+        attributeController.resetFocus();
     }
 
     private void handleCardSwiped(Direction direction) {
@@ -293,7 +322,7 @@ public class GameActivityNative extends AppCompatActivity {
         NarrativeCard card = getCardById(tree, progress.getCurrentCardId());
         if (card == null) return;
 
-        KingdomState newState = applyCardEffects(state, card);
+        KingdomState newState = applyCardEffects(state, card, direction);
         storage.saveKingdomState(newState);
         attributeController.updateValues(newState);
 
@@ -445,6 +474,7 @@ public class GameActivityNative extends AppCompatActivity {
         MusicManager.switchTrack(this, R.raw.bg_game, true);
 
         attributeController.show();
+        attributeController.resetFocus();
         menuConfigController.showMenu();
 
         GameProgress currentProgress = storage.loadProgress();
@@ -456,6 +486,8 @@ public class GameActivityNative extends AppCompatActivity {
         storage.saveProgress(newProgress);
 
         loadNextCard("root");
+
+        mainHandler.postDelayed(this::restoreCardTitle, 100);
 
         isNextTreeGenerationRequested = false;
         storage.saveTwistState(TwistState.NONE);
@@ -499,12 +531,17 @@ public class GameActivityNative extends AppCompatActivity {
     }
 
     private void loadNextCard(String id) {
-        NarrativeCard card = getCardById(storage.loadTree(), id);
-        if (card == null) return;
+        NarrativeTree tree = storage.loadTree();
+        currentCardInPlay = getCardById(tree, id);
+
+        if (currentCardInPlay == null)
+            return;
 
         List<CardData> list = new ArrayList<>();
-        list.add(convertToCardData(card, card.getCharacter()));
+        list.add(convertToCardData(currentCardInPlay, currentCardInPlay.getCharacter()));
         cardAdapter.updateCards(list);
+
+        mainHandler.post(this::restoreCardTitle);
     }
 
     private NarrativeCard getCardById(NarrativeTree tree, String id) {
@@ -530,13 +567,24 @@ public class GameActivityNative extends AppCompatActivity {
         }
     }
 
-    private KingdomState applyCardEffects(KingdomState s, NarrativeCard c) {
-        return new KingdomState(
-                clamp(s.getWealth() + c.getWealth()),
-                clamp(s.getPeople() + c.getPeople()),
-                clamp(s.getArmy() + c.getArmy()),
-                clamp(s.getFaith() + c.getFaith())
-        );
+    // Localize e substitua este método
+    private KingdomState applyCardEffects(KingdomState s, NarrativeCard c, Direction direction) {
+
+        if (direction == Direction.Right) {
+            return new KingdomState(
+                    clamp(s.getWealth() + c.getYesWealth()),
+                    clamp(s.getPeople() + c.getYesPeople()),
+                    clamp(s.getArmy() + c.getYesArmy()),
+                    clamp(s.getFaith() + c.getYesFaith())
+            );
+        } else {
+            return new KingdomState(
+                    clamp(s.getWealth() + c.getNoWealth()),
+                    clamp(s.getPeople() + c.getNoPeople()),
+                    clamp(s.getArmy() + c.getNoArmy()),
+                    clamp(s.getFaith() + c.getNoFaith())
+            );
+        }
     }
 
     private int clamp(int v) {
@@ -582,5 +630,17 @@ public class GameActivityNative extends AppCompatActivity {
                     .update("score", FieldValue.increment(1))
                     .addOnFailureListener(e -> Log.e(TAG, "Erro ao computar ponto", e));
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MusicManager.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MusicManager.resume();
     }
 }

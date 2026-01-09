@@ -1,6 +1,6 @@
 <!-- res/values/strings.xml -->
 <resources>
-    <string name="app_name">ReignsIA</string>
+    <string name="app_name">ThroneSwipe AI</string>
 
     <string name="btn_continue">Continuar</string>
     <string name="title_context">Defina o Contexto</string>
@@ -143,8 +143,12 @@
         Enigmática, visionária. Fala com presságios e urgência cósmica. Temas: destino, tempo, magia, colapso.
     </string>
 
+    <string name="dialog_title_logout">Sair do Jogo?</string>
+    <string name="dialog_message_logout">Tem certeza que deseja sair?\nSeu progresso atual será perdido!</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_confirm_logout">Sair</string>
 
-
+    <string name="enter_google">Entra com o Google</string>
 
 
 

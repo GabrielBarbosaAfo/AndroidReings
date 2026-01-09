@@ -37,4 +37,15 @@ public class FeedbackUtils {
             mediaPlayer.start();
         }
     }
+
+    public static void playTickFeedback(Context context) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK));
+            } else {
+                vibrator.vibrate(10);
+            }
+        }
+    }
 }

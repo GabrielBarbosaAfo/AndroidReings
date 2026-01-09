@@ -38,11 +38,6 @@ android {
 
 dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-
-    // Dependências necessárias
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -51,6 +46,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
 
     implementation("com.github.yuyakaido:CardStackView:2.3.4")
     implementation("com.google.android.material:material:1.12.0")
