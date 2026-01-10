@@ -289,3 +289,8 @@ section h2 {
   display: inline-block;
 }
 
+.cards-title-section {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
