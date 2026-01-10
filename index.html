@@ -1,117 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reigns IA – Jogo Android</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="imagens/fav.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-<header>
-  <h1>Reigns IA</h1>
-  <p>Um jogo Android inspirado em Reigns, com narrativa totalmente gerada por Inteligência Artificial usando a API Gemini.</p>
-  <a href="https://github.com/GabrielBarbosaAfo/AndroidReings" target="_blank" class="btn">Conheça o Jogo</a>
-</header>
-
-<section id="sobre">
-  <h2>📖 Sobre o Projeto</h2>
-  <p style="margin-top:15px">Este jogo foi desenvolvido como trabalho prático da disciplina <strong>Programação para Dispositivos Móveis e Sem Fio</strong> no IF Sudeste MG – Campus Barbacena. O objetivo é criar uma experiência narrativa dinâmica, onde cada decisão do jogador influencia diretamente o rumo da história.</p>
-</section>
-
-<section>
-  <h2>⚔️ Principais Funcionalidades</h2>
-  <div class="cards" style="margin-top:30px">
-    <div class="card">
-      <h3>Narrativa por IA</h3>
-      <p>Cartas, escolhas e consequências são geradas dinamicamente pela IA Gemini.</p>
-    </div>
-    <div class="card">
-      <h3>Gestos Deslizáveis</h3>
-      <p>Mecânica inspirada no Reigns, utilizando gestos para tomar decisões rápidas.</p>
-    </div>
-    <div class="card">
-      <h3>Persistência de Jogo</h3>
-      <p>Continue sua partida mesmo após fechar o aplicativo.</p>
-    </div>
-    <div class="card">
-      <h3>Placar Global</h3>
-      <p>Ranking sincronizado com Firebase, usando autenticação por e-mail.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-    <h2>🃏 Exemplos de Cartas do Jogo</h2>
-    <p style="margin-bottom:30px">
-        Abaixo estão alguns exemplos de cartas geradas dinamicamente pela Inteligência Artificial durante o jogo.
+  <!-- HERO / BANNER -->
+  <header class="hero">
+    <div class="hero-crown"></div>
+    <h1>ThroneSwipeAI</h1>
+    <p class="hero-subtitle">
+      Um jogo narrativo medieval inspirado em <strong>Reigns</strong>, onde cada decisão altera o destino do reino.
     </p>
 
+    <p class="apk-warning">
+      Pode ser necessário permitir a instalação de apps de fontes desconhecidas.
+    </p>  
 
-    <div class="cards">
+    <div class="hero-buttons">
+      <a href="https://github.com/GabrielBarbosaAfo/AndroidReings" target="_blank" class="btn">Ver Repositório</a>
+      <a href="apk/ThroneSwipeAI.apk" class="btn btn-secondary">Baixar o Jogo</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SOBRE -->
+    <section>
+      <h2>Sobre o Projeto</h2>
+      <p class="section-text">
+        Desenvolvido como trabalho prático da disciplina <strong>Programação para Dispositivos Móveis e Sem
+          Fio</strong>,
+        o Reigns IA utiliza Inteligência Artificial para criar narrativas dinâmicas, decisões morais complexas
+        e consequências assimétricas a cada escolha do jogador.
+      </p>
+    </section>
+
+    <!-- PERSONAGENS -->
+    <section>
+      <h2>O Conselho do Reino</h2>
+
+      <div class="character-grid">
+        <div class="character-card">
+          <img src="imagens/isolde.png" alt="Isolde">
+          <h3>Isolde</h3>
+          <span>Capitã da Guarda</span>
+          <p>Honrada e direta. Suas palavras carregam o peso da guerra, da defesa e da lealdade militar.</p>
+        </div>
+
+        <div class="character-card">
+          <img src="imagens/malachi.png" alt="Malachi">
+          <h3>Malachi</h3>
+          <span>Alto Sacerdote</span>
+          <p>Fanático e dramático. Enxerga o reino como peça de um plano divino inevitável.</p>
+        </div>
+
+        <div class="character-card">
+          <img src="imagens/elowen.png" alt="Elowen">
+          <h3>Elowen</h3>
+          <span>Curandeira Sábia</span>
+          <p>Empática e realista. Dá voz ao povo, às colheitas e às dores silenciosas do reino.</p>
+        </div>
+
+        <div class="character-card">
+          <img src="imagens/borin.png" alt="Borin">
+          <h3>Borin</h3>
+          <span>Chanceler do Tesouro</span>
+          <p>Frio e calculista. Cada decisão é medida em ouro, impostos e estabilidade econômica.</p>
+        </div>
+
+        <div class="character-card">
+          <img src="imagens/nyra.png" alt="Nyra">
+          <h3>Nyra</h3>
+          <span>Vidente do Observatório</span>
+          <p>Enigmática e inquietante. Seus presságios falam de tempo, colapso e destinos selados.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+
+      <h2>Exemplos de Cartas do Jogo</h2>
+
+      <p style="margin-bottom:30px">
+        Abaixo estão alguns exemplos de cartas geradas dinamicamente pela Inteligência Artificial durante o jogo.
+      </p>
+
+
+      <div class="cards">
         <div class="game-card">
-            <div class="game-card-title">A Vigilância Silenciosa</div>
-            <img src="imagens/carta1.jpeg" alt="Carta do jogo">
-            <div class="game-card-text">
-                Recusamos a oferta, mas o silêncio dos mercadores é mais perturbador que qualquer ameaça.
-            </div>
+          <div class="game-card-title">Guerra</div>
+          <img src="imagens/carta1.jpeg" alt="Carta do jogo">
         </div>
 
 
         <div class="game-card">
-            <div class="game-card-title">O Fardo da Coroa</div>
-            <img src="imagens/carta2.jpeg" alt="Carta do jogo">
-            <div class="game-card-text">
-                O reino ainda se recupera da guerra. A paz é frágil e cada decisão pesa sobre a coroa.
-            </div>
+          <div class="game-card-title">População</div>
+          <img src="imagens/carta2.jpeg" alt="Carta do jogo">
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-  <h2>🛠️ Tecnologias Utilizadas</h2>
-  <ul style="margin-top:20px; margin-left:20px">
-    <li>Android (Java)</li>
-    <li>API Gemini (IA Generativa)</li>
-    <li>Firebase Authentication & Firestore</li>
-    <li>GitHub Pages</li>
-  </ul>
-</section>
+    <!-- TECNOLOGIAS -->
+    <section>
+      <h2>Tecnologias Utilizadas</h2>
+      <div class="tech-grid">
+        <div class="tech-card">Android<br><small>Java</small></div>
+        <div class="tech-card">API Gemini<br><small>IA Generativa</small></div>
+        <div class="tech-card">Firebase<br><small>Auth & Firestore</small></div>
+        <div class="tech-card">GitHub Pages<br><small>Site de apresentação</small></div>
+      </div>
+    </section>
 
-<section>
-  <h2>🎮 Vídeo de Apresentação</h2>
-  <p style="margin-top:15px">
-    Demonstração do jogo, suas principais funcionalidades e mecânicas.
-  </p>
+    <!-- VIDEO -->
+    <section>
+      <h2>Vídeo de Apresentação</h2>
+      <div class="video-wrapper">
+        <video controls preload="metadata">
+          <source src="video/game.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeo HTML5.
+        </video>
+      </div>
+    </section>
 
-  <div style="margin-top:30px; text-align:center;">
-    <video controls preload="metadata" width="800">
-      <source src="video/apresentacao.mp4" type="video/mp4">
-      Seu navegador não suporta vídeo HTML5.
-    </video>
-  </div>
-</section>
+    <!-- EQUIPE -->
+    <section>
+      <h2>Equipe</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <h3>Gabriel Afonso Barbosa</h3>
+          <p>Armazenamento Firebase e lógica de jogo</p>
+          <a href="https://github.com/GabrielBarbosaAfo" target="_blank" class="btn small git-btn">GitHub</a>
+        </div>
 
-<section>
-  <h2>👥 Equipe do Projeto</h2>
-  <div class="cards" style="margin-top:30px">
-    <div class="card">
-      <h3>Gabriel Afonso Barbosa</h3>
-      <p>Desenvolvedor Android e idealizador do projeto.</p>
-      <a href="https://github.com/GabrielBarbosaAfo" target="_blank" class="btn">GitHub</a>
-    </div>
-    <div class="card">
-      <h3>Michelle Cristina Gomes</h3>
-      <p>Desenvolvedora Android e colaboradora no desenvolvimento do jogo.</p>
-      <a href="https://github.com/michelleGomes85" target="_blank" class="btn">GitHub</a>
-    </div>
-  </div>
-</section>
+        <div class="team-card">
+          <h3>Michelle Cristina Gomes</h3>
+          <p>Engenharia de Prompt, design e som</p>
+          <a href="https://github.com/michelleGomes85" target="_blank" class="btn small git-btn">GitHub</a>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <p>© 2025 – Projeto acadêmico | Tecnologia em Sistemas para Internet</p>
-</footer>
+  </main>
+
+  <footer>
+    <p>© 2026 – Projeto acadêmico | Tecnologia em Sistemas para Internet</p>
+  </footer>
 
 </body>
+
 </html>
