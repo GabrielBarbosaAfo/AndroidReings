@@ -10,29 +10,32 @@
 ![Firebase](https://img.shields.io/badge/Backend-Firebase-FFCA28?style=flat&logo=firebase)
 ![Gemini AI](https://img.shields.io/badge/AI-Google%20Gemini-8E75B2?style=flat&logo=google)
 
-## 📸 Screenshots
-
 <div align="center">
   <table>
     <tr>
       <td align="center">
-        <img src="https://github.com/user-attachments/assets/55c348bd-e5c4-4c62-bc3d-1feb87dcbb89" width="200px;" alt="Login"/><br>
+        <img src="https://github.com/user-attachments/assets/55c348bd-e5c4-4c62-bc3d-1feb87dcbb89" width="250px;" alt="Login"/><br>
         <sub><b>1. Início e Login</b></sub>
       </td>
       <td align="center">
-        <img src="https://github.com/user-attachments/assets/5210d462-e8be-4402-a236-8a4ec089b0d5" width="200px;" alt="Configuração API"/><br>
+        <img src="https://github.com/user-attachments/assets/5210d462-e8be-4402-a236-8a4ec089b0d5" width="250px;" alt="Configuração API"/><br>
         <sub><b>2. Configuração (API)</b></sub>
       </td>
       <td align="center">
-        <img src="https://github.com/user-attachments/assets/48b85312-4807-4444-b793-ca99f851ac64" width="200px;" alt="Contexto"/><br>
+        <img src="https://github.com/user-attachments/assets/48b85312-4807-4444-b793-ca99f851ac64" width="250px;" alt="Contexto"/><br>
         <sub><b>3. Contexto da História</b></sub>
       </td>
     </tr>
   </table>
 
-
-  <img src="https://github.com/user-attachments/assets/75d3038d-1d64-4922-991c-6c3d3241c2fb" width="400px;" alt="Gameplay"/><br>
-    <sub><b>4. Jogo (Gameplay)</b></sub>
+   <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/75d3038d-1d64-4922-991c-6c3d3241c2fb" width="400px;" alt="Gameplay"/><br>
+        <sub><b>4. Jogo (Gameplay)</b></sub>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ## 📖 Sobre o Projeto
